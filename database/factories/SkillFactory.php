@@ -14,7 +14,7 @@ class SkillFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'nama_skill' => $this->faker->jobTitle(),
         ];
     }
 }

@@ -19,7 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('alamat_user');
             $table->string('foto_user');
             $table->string('cv_user');
-            $table->integer('notlp_user');
+            $table->string('notlp_user');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

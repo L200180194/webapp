@@ -16,7 +16,7 @@ class CreatePerusahaansTable extends Migration
         Schema::create('perusahaans', function (Blueprint $table) {
             $table->id();
             $table->string("nama_perusahaan");
-            $table->string("alamat_perushaan");
+            $table->string("alamat_perusahaan");
             $table->string("foto_perusahaan");
             $table->string("email_perusahaan")->unique();
             $table->string("password_perusahaan");
@@ -24,7 +24,7 @@ class CreatePerusahaansTable extends Migration
             $table->string("surat_perusahaan");
             $table->timestamp("tgl_statusperusahaan")->useCurrent();
             $table->text("deskripsi_perusahaan");
-            $table->integer("notlp_perusahaan");
+            $table->string("notlp_perusahaan");
             $table->foreignId('admin_id');
             $table->timestamps();
         });
