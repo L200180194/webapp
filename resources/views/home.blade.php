@@ -9,7 +9,7 @@
             <h1 class="display-5 fw-bold lh-1 mb-3">MyIntern</h1>
             <p class="lead">Menghubungkan setiap perusahaan maupun start up dengan sumber daya yang berkualitas di Indonesia</p>
             <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-                <button type="button" class="btn btn-primary btn-lg px-4 me-md-2">Login</button>
+                <a href="/login" class="btn btn-primary btn-lg px-4 me-md-2"> Login</a>
                 <button type="button" class="btn btn-outline-secondary btn-lg px-4">register</button>
                 {{-- COBA UNTUK MASUK KE DASHBOARD --}}
                 <a href="/dashboard" class="btn btn-primary btn-lg px-4 me-md-2"> Dashboard</a>
