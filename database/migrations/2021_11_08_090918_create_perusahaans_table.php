@@ -18,8 +18,8 @@ class CreatePerusahaansTable extends Migration
             $table->string("nama_perusahaan");
             $table->string("alamat_perusahaan");
             $table->string("foto_perusahaan");
-            $table->string("email_perusahaan")->unique();
-            $table->string("password_perusahaan");
+            $table->string("email")->unique();
+            $table->string("password");
             $table->string("status_perusahaan");
             $table->string("surat_perusahaan");
             $table->timestamp("tgl_statusperusahaan")->useCurrent();
