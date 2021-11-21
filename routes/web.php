@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardPosisiController;
 use App\Http\Controllers\loginController;
 use Illuminate\Support\Facades\Route;
 
@@ -16,11 +17,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('home');
-});
+})->name('home')->middleware('guest');
 
 Route::get('/dashboard', function () {
     return view('dashboard.index');
-});
+})->middleware('auth:perusahaan');
 
-Route::get('/login', [loginController::class, 'index']);
-Route::Post('/login', [loginController::class, 'authenticate']);
+Route::get('/login', [loginController::class, 'index'])->middleware('guest');
+Route::Post('/login', [loginController::class, 'authenticate'])->middleware('guest');
+Route::Post('/logoutperusahaan', [loginController::class, 'logout'])->middleware('auth:perusahaan');
+Route::resource('/dashboard/posisi', DashboardPosisiController::class)->middleware('auth:perusahaan');

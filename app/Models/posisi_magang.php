@@ -9,4 +9,9 @@ class posisi_magang extends Model
 {
     use HasFactory;
     protected $guarded = ["id"];
+
+    public function perusahaan()
+    {
+        return $this->belongsTo(perusahaan::class);
+    }
 }
