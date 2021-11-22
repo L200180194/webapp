@@ -4,6 +4,7 @@
     <h1 class="h2">Posisi Magang
     </h1>
 </div>
+<button type="button" class="btn btn-primary">Tambah Posisi Magang</button>
 <div class="table-responsive">
     <table class="table align-middle">
         
@@ -50,7 +51,10 @@
                 <td>{{ $item->deskripsi_posisi }}</td>
                 <td>{{ $item->deadline_posisi }}</td>
                 <td>{{ $item->created_at }}</td>
-                <td></td>
+                <td>
+                    <a href="" class="badge bg-primary"><i class="bi bi-pencil-square" style="font-size: 1.5rem"></i></a>
+                    <a href="" class="badge bg-danger mt-2"><i class="bi bi-trash"style="font-size: 1.5rem"></i></i></a>
+                </td>
             </tr>
             @endforeach
             

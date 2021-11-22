@@ -17,15 +17,15 @@ class CreatePerusahaansTable extends Migration
             $table->id();
             $table->string("nama_perusahaan");
             $table->string("alamat_perusahaan");
-            $table->string("foto_perusahaan");
+            $table->string("foto_perusahaan")->nullable();
             $table->string("email")->unique();
             $table->string("password");
-            $table->string("status_perusahaan");
-            $table->string("surat_perusahaan");
-            $table->timestamp("tgl_statusperusahaan")->useCurrent();
-            $table->text("deskripsi_perusahaan");
-            $table->string("notlp_perusahaan");
-            $table->foreignId('admin_id');
+            $table->string("status_perusahaan")->default('unverif');
+            $table->string("surat_perusahaan")->nullable();
+            $table->timestamp("tgl_statusperusahaan")->useCurrent()->nullable();
+            $table->text("deskripsi_perusahaan")->nullable();
+            $table->string("notlp_perusahaan")->nullable();
+            $table->foreignId('admin_id')->nullable();
             $table->timestamps();
         });
     }

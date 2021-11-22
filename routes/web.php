@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DashboardPosisiController;
 use App\Http\Controllers\loginController;
+use App\Http\Controllers\RegistrasiController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,6 +25,8 @@ Route::get('/dashboard', function () {
 })->middleware('auth:perusahaan');
 
 Route::get('/login', [loginController::class, 'index'])->middleware('guest');
+Route::get('/registrasi', [RegistrasiController::class, 'index'])->middleware('guest');
+Route::post('/registrasi', [RegistrasiController::class, 'store'])->middleware('guest');
 Route::Post('/login', [loginController::class, 'authenticate'])->middleware('guest');
 Route::Post('/logoutperusahaan', [loginController::class, 'logout'])->middleware('auth:perusahaan');
 Route::resource('/dashboard/posisi', DashboardPosisiController::class)->middleware('auth:perusahaan');

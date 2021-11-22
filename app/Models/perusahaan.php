@@ -12,7 +12,9 @@ use Laravel\Sanctum\HasApiTokens;
 class perusahaan extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
-    protected $guarded = ["id"];
+    protected $guarded = ['id'];
+    // protected $fillable = ['nama_perusahaan', 'alamat_perusahaan', 'foto_perusahaan', 'email', 'password', 'status_perusahaan', 'surat_perusahaan', 'tgl_statusperusahaan', 'deskripsi_perusahaan', 'notlp_perusahaan', 'admin_id', 'created_at', '	updated_at'];
+
 
     /**
      * The attributes that should be hidden for serialization.

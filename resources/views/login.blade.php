@@ -7,6 +7,11 @@
             {{ session('loginError') }}
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
+        @elseif (session()->has('Success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session('Success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
         @endif
         <main class="form-signin">
             <h1 class="text-center">MyIntern</h1>
@@ -37,7 +42,7 @@
                 <button class="w-100 btn btn-lg btn-primary mt-3" type="submit">Login</button>
                 
             </form>
-            <small class="d-block mt-2">Belum Registrasi ? <a href="">Registrasi sekarang</a></small>
+            <small class="d-block mt-2">Belum Registrasi ? <a href="/registrasi">Registrasi sekarang</a></small>
         </main>
     </div>
 </div>

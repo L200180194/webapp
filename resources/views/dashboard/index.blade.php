@@ -6,7 +6,7 @@
 </div>
 <div class="row ">
     <div class="col-md-3">
-        <a href="" style="text-decoration:none">
+        <a href="/dashboard/posisi" style="text-decoration:none">
             <div class="card text-white bg-success mb-3 " style="max-width: 18rem;">
                 <!-- <div class="card-header"><strong>Posisi Magang</strong> </div> -->
                 <div class="card-body">
