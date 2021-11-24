@@ -8,7 +8,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link {{ Request::is('dashboard/posisi')?'active':'' }}" href="/dashboard/posisi">
+                <a class="nav-link {{ Request::is('dashboard/posisi*')?'active':'' }}" href="/dashboard/posisi">
                     {{-- <span data-feather="file"></span> --}}
                     <i class="bi bi-journal-text"style="font-size: 1.3rem; "></i>
                     Posisi Magang

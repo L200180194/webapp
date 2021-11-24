@@ -4,7 +4,7 @@
     <img src="{{url('/profil_perusahaan/profil1.jpg')}}" class="img-thumbnail mt-2 img-fluid" alt="..." width="250" height="250">
 </div> --}}
 <div class="container-md mt-5">
-    <div class="card mb-5" style="background: #E6E6E7;">
+    <div class="card mb-4 " style="background: #E6E6E7;">
         <div class="card-header">
             <div class="row">
                 <div class="col-8"><h5>Profil</h5></div>
@@ -51,7 +51,7 @@
         
     </div>
 
-    <div class="card mb-5" style="background: #E6E6E7;">
+    <div class="card mb-4" style="background: #E6E6E7;">
         <div class="card-header">
             <div class="row">
                 <div class="col-8"><h5>Akun</h5></div>
@@ -79,7 +79,7 @@
         </div>
     </div>
 
-    <div class="card mb-5" style="background: #E6E6E7;">
+    <div class="card mb-4" style="background: #E6E6E7;">
         <div class="card-header">
             <h5>Status Perusahaan</h5>
         </div>
@@ -92,7 +92,7 @@
                 @if (Auth::guard('perusahaan')->user()->status_perusahaan == 'proses' )
                 <div class="col fs-6"><span class="badge bg-warning text-dark">Proses Verifikasi</span></div>
 
-                @elseif (Auth::guard('perusahaan')->user()->status_perusahaan == 'verfikasi')
+                @elseif (Auth::guard('perusahaan')->user()->status_perusahaan == 'verifikasi')
                 <div class="col fs-6"><span class="badge bg-success">Terverivikasi</span></div>
 
                 @elseif (Auth::guard('perusahaan')->user()->status_perusahaan == 'ditolak')
@@ -235,7 +235,7 @@
             </div>
         </div>
     </div>
-    <a href="" class="btn btn-danger mb-5 ">Logout</a>
+    <a href="" class="btn btn-danger mb-4 ">Logout</a>
     {{-- {{ Auth::guard('perusahaan')->user() }} --}}
 </div>
 
