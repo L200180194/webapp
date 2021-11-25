@@ -34,8 +34,12 @@ class perusahaan extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-    public function posisi_magang()
+    // public function posisi_magang()
+    // {
+    //     return $this->hasMany(posisi_magang::class);
+    // }
+    public function Posisim()
     {
-        return $this->hasMany(posisi_magang::class);
+        return $this->hasMany(Posisim::class);
     }
 }

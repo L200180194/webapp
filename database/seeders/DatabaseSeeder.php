@@ -9,6 +9,7 @@ use App\Models\perusahaan;
 use App\Models\posisi_magang;
 use App\Models\skill;
 use App\Models\pendidikan;
+use App\Models\Posisim;
 use App\Models\prodi;
 use Illuminate\Database\Seeder;
 
@@ -28,6 +29,7 @@ class DatabaseSeeder extends Seeder
         Pendaftaran::factory(10)->create();
         Perusahaan::factory(10)->create();
         Posisi_magang::factory(10)->create();
+        Posisim::factory(10)->create();
         Skill::factory(10)->create();
 
         Pendidikan::create([

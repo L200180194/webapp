@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\DashboardPosisiController;
+use App\Http\Controllers\PosisiMagangController;
+use App\Http\Controllers\PosisimController;
 use App\Http\Controllers\loginController;
 use App\Http\Controllers\RegistrasiController;
 use App\Http\Controllers\PerusahaanController;
@@ -30,5 +32,7 @@ Route::get('/registrasi', [RegistrasiController::class, 'index'])->middleware('g
 Route::post('/registrasi', [RegistrasiController::class, 'store'])->middleware('guest');
 Route::Post('/login', [loginController::class, 'authenticate'])->middleware('guest');
 Route::Post('/logoutperusahaan', [loginController::class, 'logout'])->middleware('auth:perusahaan');
-Route::resource('/dashboard/posisi', DashboardPosisiController::class)->middleware('auth:perusahaan');
+// Route::resource('/dashboard/posisi', DashboardPosisiController::class)->middleware('auth:perusahaan');
+// Route::resource('/dashboard/posisi', PosisiMagangController::class)->middleware('auth:perusahaan');
+Route::resource('/dashboard/posisi', PosisimController::class)->middleware('auth:perusahaan');
 Route::resource('/dashboard/profil', PerusahaanController::class)->middleware('auth:perusahaan');

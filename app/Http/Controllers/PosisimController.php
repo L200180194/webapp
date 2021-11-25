@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\perusahaan;
-use App\Models\posisi_magang;
+use App\Models\Posisim;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 
-class DashboardPosisiController extends Controller
+
+class PosisimController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,7 +18,7 @@ class DashboardPosisiController extends Controller
     public function index()
     {
         return  view('dashboard.posisi.index', [
-            'posisis' => posisi_magang::where('perusahaan_id', Auth::guard('perusahaan')->user()->id)->get()
+            'posisis' => Posisim::where('perusahaan_id', Auth::guard('perusahaan')->user()->id)->get()
         ]);
     }
 
@@ -52,28 +52,28 @@ class DashboardPosisiController extends Controller
         ]);
         $validatedData["foto_posisi"] =  $request->file('foto_posisi')->store('images-posisi');
         $validatedData["perusahaan_id"] =  Auth::guard('perusahaan')->user()->id;
-        posisi_magang::create($validatedData);
+        Posisim::create($validatedData);
         return Redirect('dashboard/posisi')->with('success', 'Posisi Magang Berhasil di Tambahkan');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\posisi_magang  $posisi_magang
+     * @param  \App\Models\Posisim  $posisim
      * @return \Illuminate\Http\Response
      */
-    public function show(posisi_magang $posisi_magang)
+    public function show(Posisim $posisim)
     {
-        return $posisi_magang;
+        return $posisim;
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\perusahaan  $perusahaan
+     * @param  \App\Models\Posisim  $posisim
      * @return \Illuminate\Http\Response
      */
-    public function edit(perusahaan $perusahaan)
+    public function edit(Posisim $posisim)
     {
         //
     }
@@ -82,10 +82,10 @@ class DashboardPosisiController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\perusahaan  $perusahaan
+     * @param  \App\Models\Posisim  $posisim
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, perusahaan $perusahaan)
+    public function update(Request $request, Posisim $posisim)
     {
         //
     }
@@ -93,10 +93,10 @@ class DashboardPosisiController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\perusahaan  $perusahaan
+     * @param  \App\Models\Posisim  $posisim
      * @return \Illuminate\Http\Response
      */
-    public function destroy(perusahaan $perusahaan)
+    public function destroy(Posisim $posisim)
     {
         //
     }

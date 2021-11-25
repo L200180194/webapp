@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\posisi_magang;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
 class PosisiMagangController extends Controller
 {
@@ -14,7 +16,9 @@ class PosisiMagangController extends Controller
      */
     public function index()
     {
-        //
+        return  view('dashboard.posisi.index', [
+            'posisis' => posisi_magang::where('perusahaan_id', Auth::guard('perusahaan')->user()->id)->get()
+        ]);
     }
 
     /**
@@ -24,7 +28,7 @@ class PosisiMagangController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.posisi.create');
     }
 
     /**
@@ -35,29 +39,49 @@ class PosisiMagangController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'nama_posisi' => 'required|max:30',
+            'foto_posisi' => 'required|mimes:jpg,png|file|max:1524',
+            // 'foto_posisi' => 'required',
+            'persyaratan_posisi' => 'required',
+            'keterangan_posisi' => 'required',
+            'fasilitas_posisi' => 'required',
+            'deskripsi_posisi' => 'required',
+            'deadline_posisi' => 'required',
+        ]);
+        $validatedData["foto_posisi"] =  $request->file('foto_posisi')->store('images-posisi');
+        $validatedData["perusahaan_id"] =  Auth::guard('perusahaan')->user()->id;
+        posisi_magang::create($validatedData);
+        return Redirect('dashboard/posisi')->with('success', 'Posisi Magang Berhasil di Tambahkan');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\posisi_magang  $posisi_magang
+    //  * @param  \App\Models\posisi_magang  $posisi_magang
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(posisi_magang $posisi_magang)
+    public function show($id)
     {
-        //
+        // return $posisi_magang;
+        $posisi_magang = posisi_magang::find($id);
+        return view('dashboard.posisi.show', ['posisi' => $posisi_magang]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\posisi_magang  $posisi_magang
+    //  * @param  \App\Models\posisi_magang  $posisi_magang
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(posisi_magang $posisi_magang)
+    public function edit($id)
     {
-        //
+        return posisi_magang::where('posisi_magang_id', $id);
+        // return view('dashboard.posisi.edit', [
+        //     'posisi' => posisi_magang::where('posisi_magang_id', $id)
+        // ]);
     }
 
     /**
@@ -75,11 +99,13 @@ class PosisiMagangController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\posisi_magang  $posisi_magang
+     * @param  int  $id
+    //  * @param  \App\Models\posisi_magang  $posisi_magang
      * @return \Illuminate\Http\Response
      */
-    public function destroy(posisi_magang $posisi_magang)
+    public function destroy($id)
     {
-        //
+        posisi_magang::destroy($id);
+        return Redirect('dashboard/posisi')->with('success', 'Posisi Magang Berhasil di Hapus');
     }
 }
