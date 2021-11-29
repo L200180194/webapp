@@ -64,7 +64,9 @@ class PosisimController extends Controller
      */
     public function show(Posisim $posisim)
     {
-        return $posisim;
+
+        dd($posisim->get());
+        // return $posisim->get();
     }
 
     /**
@@ -75,7 +77,7 @@ class PosisimController extends Controller
      */
     public function edit(Posisim $posisim)
     {
-        //
+        //TODO POsisimcontroller dengan dasboarposisicontroller dan posisimagang controller sama gunakan salah satu. yang lengkap dan sudah berjalan posisimagangcontroller
     }
 
     /**

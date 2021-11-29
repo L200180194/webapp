@@ -1,8 +1,20 @@
 @extends('dashboard.layoutsdashboard.main')
 @section('container')
-{{-- <div class="rounded mx-auto d-block text-center mt-5 ">
-    <img src="{{url('/profil_perusahaan/profil1.jpg')}}" class="img-thumbnail mt-2 img-fluid" alt="..." width="250" height="250">
-</div> --}}
+@if (session()->has('success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session('success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    
+@endif
+<div class="rounded mx-auto d-block text-center mt-5 ">
+    @if ( Auth::guard('perusahaan')->user()->foto_perusahaan == null)
+    <img src="{{url('/profil_perusahaan/perusahaan.jpg')}}" class="img-thumbnail mt-2 img-fluid" alt="..." width="250" height="250">
+    @else
+    <img src="{{asset('storage/' . Auth::guard('perusahaan')->user()->foto_perusahaan )}}" class="img-thumbnail mt-2 img-fluid" alt="..." width="250" height="250">
+    @endif
+    {{-- <img src="{{url('/profil_perusahaan/profil1.jpg')}}" class="img-thumbnail mt-2 img-fluid" alt="..." width="250" height="250"> --}}
+</div>
 <div class="container-md mt-5">
     <div class="card mb-4 " style="background: #E6E6E7;">
         <div class="card-header">
@@ -43,9 +55,17 @@
                     @if (Auth::guard('perusahaan')->user()->deskripsi_perusahaan == null)
                     Mohon Lengkapi profil
                     @else
-                    {{ Auth::guard('perusahaan')->user()->deskripsi_perusahaan }}
+                    {!! Auth::guard('perusahaan')->user()->deskripsi_perusahaan !!}
+                    
                     @endif
                 </div>
+                
+            </div>
+            <div class="row mb-1">
+                <div class="col-4">
+                    <h6>Surat Perusahaan </h6>
+                </div>
+                <div class="col fs-6">{{ Auth::guard('perusahaan')->user()->surat_perusahaan }}</div>
             </div>
         </div>
         
@@ -108,12 +128,7 @@
                 </div>
                 <div class="col fs-6">{{ Auth::guard('perusahaan')->user()->tgl_statusperusahaan }}</div>
             </div>
-            <div class="row mb-1">
-                <div class="col-4">
-                    <h6>Surat Perusahaan </h6>
-                </div>
-                <div class="col fs-6">{{ Auth::guard('perusahaan')->user()->surat_perusahaan }}</div>
-            </div>
+            
         </div>
     </div>
 
@@ -127,8 +142,32 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="">
+                    <form action="/dashboard/profil" enctype="multipart/form-data" method="POST">
+                        @method('put')
                         @csrf
+                        <div class="mb-3">
+                            <label for="foto_perusahaan" class="form-label">Foto Perusahaan</label>
+                            @if (Auth::guard('perusahaan')->user()->foto_perusahaan)
+                                <img src="{{ asset('storage/' . Auth::guard('perusahaan')->user()->foto_perusahaan ) }}" alt="" class="img-preview img-fluid mb-3 col-sm-5 d-block">
+                            @else
+                            <img alt="" class="img-preview img-fluid mb-3 col-sm-5">
+                            @endif
+                            <input class="form-control @error('foto_perusahaan') is-invalid @enderror"  type="file" id="foto_perusahaan" name="foto_perusahaan" required onchange="previewImage()">
+                            @error('foto_perusahaan')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label for="surat_perusahaan" class="form-label">Surat Perusahaan</label>
+                            <input class="form-control @error('surat_perusahaan') is-invalid @enderror"  type="file" id="surat_perusahaan" name="surat_perusahaan" required>
+                            @error('surat_perusahaan')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div>
                         <div class="mb-3 mx-1">
                             <label for="nama_perusahaan" class="form-label">Nama</label>
                             <input type="text" name="nama_perusahaan" class="form-control @error('nama_perusahaan') is-invalid @enderror" id="nama_perusahaan" placeholder="name@example.com" required value="{{ Auth::guard('perusahaan')->user()->nama_perusahaan }}">
@@ -157,31 +196,21 @@
                             @enderror
                         </div>
                         <div class="mb-3 mx-1">
-                            <label for="deskripsi_perusahaan" class="form-label">Deskripsi</label>
-                            <textarea name="deskripsi_perusahaan" class="form-control @error('deskripsi_perusahaan') is-invalid @enderror" id="deskripsi_perusahaan" placeholder="Deskripsi Perusahaan" required " cols="30" rows="5">{{ Auth::guard('perusahaan')->user()->deskripsi_perusahaan }}</textarea>
+                            <label for="deskripsi_perusahaan" class="form-label">Deskripsi </label>
+                            <input id="deskripsi_perusahaan" type="hidden" name="deskripsi_perusahaan" value="{{ old('deskripsi_perusahaan',Auth::guard('perusahaan')->user()->deskripsi_perusahaan) }}">
+                            <trix-editor input="deskripsi_perusahaan"></trix-editor>
                             @error('deskripsi_perusahaan')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
+                            <p class="text-danger">{{ $message }}</p>
                             @enderror
                         </div>
-                        {{-- <div class="mb-3 mx-1">
-                            <fieldset disabled>
-                            <label for="email" class="form-label">Email</label>
-                            <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" id="email" placeholder="name@example.com" required value="{{ Auth::guard('perusahaan')->user()->email }}">
-                            @error('email')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
-                            @enderror
-                            </fieldset>
-                        </div> --}}
+                        
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Save changes</button>
+                        </div>
                     </form>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
+                
             </div>
         </div>
     </div>
@@ -237,7 +266,24 @@
     </div>
     <a href="" class="btn btn-danger mb-4 ">Logout</a>
     {{-- {{ Auth::guard('perusahaan')->user() }} --}}
+    
 </div>
+<script>
+    document.addEventListener('trix-file-accept',function(e){
+        e.preventDevault()
+    })
 
+    function previewImage (){
+    const image = document.querySelector('#foto_perusahaan');
+    const imgprev = document.querySelector('.img-preview');
+    imgprev.style.display = 'block';
+
+    const oFReader = new FileReader();
+    oFReader.readAsDataURL(image.files[0]);
+    oFReader.onload = function(oFREvent){
+        imgprev.src=oFREvent.target.result;
+    }
+    }
+</script>
 
 @endsection

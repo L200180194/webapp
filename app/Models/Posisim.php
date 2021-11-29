@@ -9,10 +9,11 @@ class Posisim extends Model
 {
     use HasFactory;
     protected $guarded = ["id"];
-    protected $with = ['perusahaan'];
+    // protected $with = ['perusahaan'];
 
     public function perusahaan()
     {
-        return $this->belongsTo(perusahaan::class);
+        // return $this->belongsTo(perusahaan::class);
+        return $this->belongsTo(perusahaan::class, 'perusahaan_id');
     }
 }
