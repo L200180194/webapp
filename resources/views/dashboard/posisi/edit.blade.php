@@ -27,7 +27,7 @@
             @else
             <img alt="" class="img-preview img-fluid mb-3 col-sm-5">
             @endif
-            <input class="form-control @error('foto_posisi') is-invalid @enderror"  type="file" id="foto_posisi" name="foto_posisi" required onchange="previewImage()">
+            <input class="form-control @error('foto_posisi') is-invalid @enderror"  type="file" id="foto_posisi" name="foto_posisi"  onchange="previewImage()">
             @error('foto_posisi')
             <div class="invalid-feedback">
                 {{ $message }}
@@ -74,6 +74,7 @@
             @error('keterangan_posisi')
             <p class="text-danger">{{ $message }}</p>
             @enderror
+            <input type="hidden" name="nama_file" id="nama_file" value="{{ $posisi->foto_posisi }}">
         </div>
         <button type="submit" class="btn btn-primary mb-5">Submit</button>
     </form>

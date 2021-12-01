@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\posisi_magang;
 use Illuminate\Http\Request;
+use App\Models\posisi_magang;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Redirect;
 
 class PosisiMagangController extends Controller
@@ -95,9 +96,10 @@ class PosisiMagangController extends Controller
      */
     public function update(Request $request, $id)
     {
+
         $validatedData = $request->validate([
             'nama_posisi' => 'required|max:30',
-            'foto_posisi' => 'required|mimes:jpg,png|file|max:1524',
+            'foto_posisi' => 'mimes:jpg,png|file|max:1524',
             // 'foto_posisi' => 'required',
             'persyaratan_posisi' => 'required',
             'keterangan_posisi' => 'required',
@@ -105,7 +107,11 @@ class PosisiMagangController extends Controller
             'deskripsi_posisi' => 'required',
             'deadline_posisi' => 'required',
         ]);
-        $validatedData["foto_posisi"] =  $request->file('foto_posisi')->store('images-posisi');
+        if ($request->foto_posisi != null) {
+            $validatedData["foto_posisi"] =  $request->file('foto_posisi')->store('images-posisi');
+            Storage::delete($request->nama_file);
+        }
+
         $validatedData["perusahaan_id"] =  Auth::guard('perusahaan')->user()->id;
         // posisi_magang::create($validatedData);
         posisi_magang::where('id', $id)->update($validatedData);

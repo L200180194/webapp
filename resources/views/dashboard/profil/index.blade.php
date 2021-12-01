@@ -1,7 +1,7 @@
 @extends('dashboard.layoutsdashboard.main')
 @section('container')
 @if (session()->has('success'))
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
             {{ session('success') }}
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
@@ -152,7 +152,7 @@
                             @else
                             <img alt="" class="img-preview img-fluid mb-3 col-sm-5">
                             @endif
-                            <input class="form-control @error('foto_perusahaan') is-invalid @enderror"  type="file" id="foto_perusahaan" name="foto_perusahaan" required onchange="previewImage()">
+                            <input class="form-control @error('foto_perusahaan') is-invalid @enderror"  type="file" id="foto_perusahaan" name="foto_perusahaan"  onchange="previewImage()">
                             @error('foto_perusahaan')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -161,7 +161,11 @@
                         </div>
                         <div class="mb-3">
                             <label for="surat_perusahaan" class="form-label">Surat Perusahaan</label>
-                            <input class="form-control @error('surat_perusahaan') is-invalid @enderror"  type="file" id="surat_perusahaan" name="surat_perusahaan" required>
+                            @if (Auth::guard('perusahaan')->user()->surat_perusahaan)
+                                <img src="{{ asset('storage/' . Auth::guard('perusahaan')->user()->surat_perusahaan ) }}" alt="" class="img-preview img-fluid mb-3 col-sm-5 d-block">
+                                <a href="">{{ asset('storage/' . Auth::guard('perusahaan')->user()->surat_perusahaan ) }}</a>
+                            @endif
+                            <input class="form-control @error('surat_perusahaan') is-invalid @enderror"  type="file" id="surat_perusahaan" name="surat_perusahaan" >
                             @error('surat_perusahaan')
                             <div class="invalid-feedback">
                                 {{ $message }}
