@@ -9,6 +9,7 @@ use App\Http\Controllers\RegistrasiController;
 use App\Http\Controllers\PosisiMagangController;
 use App\Http\Controllers\ProfilPerusahaanContrl;
 use App\Http\Controllers\DashboardPosisiController;
+use App\Http\Controllers\PendaftarPerusahaanCont;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,5 +40,7 @@ Route::resource('/dashboard/posisi', PosisiMagangController::class)->middleware(
 // Route::resource('/dashboard/posisi', PosisimController::class)->middleware('auth:perusahaan');
 
 // Route::resource('/dashboard/profil', PerusahaanController::class)->middleware('auth:perusahaan');
-Route::get('/dashboard/profil', [ProfilPerusahaanContrl::class, 'index'])->middleware('guest');
-Route::put('/dashboard/profil', [ProfilPerusahaanContrl::class, 'updateprofil'])->middleware('guest');
+Route::get('/dashboard/profil', [ProfilPerusahaanContrl::class, 'index'])->middleware('auth:perusahaan');
+Route::put('/dashboard/profil', [ProfilPerusahaanContrl::class, 'updateprofil'])->middleware('auth:perusahaan');
+Route::get('/dashboard/pendaftar', [PendaftarPerusahaanCont::class, 'index'])->middleware('auth:perusahaan');
+Route::get('/dashboard/pendaftar/{id}', [PendaftarPerusahaanCont::class, 'show'])->middleware('auth:perusahaan');

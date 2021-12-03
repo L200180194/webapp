@@ -15,14 +15,14 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link {{ Request::is('dashboard')?'active':'' }}" href="#">
+                <a class="nav-link {{ Request::is('dashboard/pendaftar*')?'active':'' }}" href="/dashboard/pendaftar">
                     {{-- <span data-feather="shopping-cart"></span> --}}
                     <i class="bi bi-file-earmark-person" style="font-size: 1.3rem; "></i>
                     Pendaftaran
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link {{ Request::is('dashboard/profil')?'active':'' }} " aria-current="page" href="/dashboard/profil">
+                <a class="nav-link {{ Request::is('dashboard/profil*')?'active':'' }} " aria-current="page" href="/dashboard/profil">
                     <i class="bi bi-building " style="font-size: 1.3rem; "></i>
                     Profil
                 </a>

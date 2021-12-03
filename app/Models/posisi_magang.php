@@ -14,4 +14,8 @@ class posisi_magang extends Model
     {
         return $this->belongsTo(perusahaan::class);
     }
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'pendaftarans')->withPivot('tgl_daftar', 'tgl_perubahanstatus', 'keterangan_daftar', 'status_daftar', 'perusahaan_id');
+    }
 }
