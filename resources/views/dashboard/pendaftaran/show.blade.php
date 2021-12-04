@@ -87,6 +87,9 @@
         <th>
             STATUS
         </th>
+        <th>
+            ACTION
+        </th>
 
         <tbody>
             @foreach ($daftar->users as $item)
@@ -96,11 +99,23 @@
                 <td> <img src="{{ asset('storage/' . $item->foto_user) }}" height="30" width="30" alt=""> </td>
                 
                 <td>{{ $item->alamat_user }}</td>
-                <td>{{ $item->pivot->status_daftar }}</td>
+                <td>
+                    {{-- {{ $item->pivot->status_daftar }} --}}
+                    @if ($item->pivot->status_daftar == 'proses' )
+                    <div class="col fs-6"><span class="badge bg-warning text-dark">Proses</span></div>
+
+                    @elseif ($item->pivot->status_daftar == 'Diterima')
+                    <div class="col fs-6"><span class="badge bg-success">Diterima</span></div>
+
+                    @elseif ($item->pivot->status_daftar == 'Ditolak')
+                    <div class="col fs-6"><span class="badge bg-danger">Ditolak</span></div>
+
+                    @endif
+                </td>
                 
-                {{-- <td>
-                    <a href="/dashboard/pendaftar/{{ $item->id }}" class="btn btn-primary"><i class="bi bi-eye" > </i> Lihat Pendaftar</a>
-                </td> --}}
+                <td>
+                    <a href="/dashboard/pendaftar/detail/{{ $item->id }}/{{ $item->pivot->id }}" class="badge bg-primary mt-2"><i class="bi bi-pencil-square" style="font-size: 1.5rem"></i></a>
+                </td>
             </tr>
             @endforeach
         </tbody>

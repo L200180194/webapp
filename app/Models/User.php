@@ -45,6 +45,6 @@ class User extends Authenticatable
 
     public function posisi_magangs()
     {
-        return $this->belongsToMany(posisi_magang::class, 'pendaftarans')->withPivot('tgl_daftar', 'tgl_perubahanstatus', 'keterangan_daftar', 'status_daftar', 'perusahaan_id');
+        return $this->belongsToMany(posisi_magang::class, 'pendaftarans')->withPivot('tgl_daftar', 'tgl_perubahanstatus', 'keterangan_daftar', 'status_daftar', 'perusahaan_id', 'id');
     }
 }

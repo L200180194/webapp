@@ -9,6 +9,7 @@ class posisi_magang extends Model
 {
     use HasFactory;
     protected $guarded = ["id"];
+    protected $table = 'posisi_magangs';
 
     public function perusahaan()
     {
@@ -16,6 +17,6 @@ class posisi_magang extends Model
     }
     public function users()
     {
-        return $this->belongsToMany(User::class, 'pendaftarans')->withPivot('tgl_daftar', 'tgl_perubahanstatus', 'keterangan_daftar', 'status_daftar', 'perusahaan_id');
+        return $this->belongsToMany(User::class, 'pendaftarans')->withPivot('tgl_daftar', 'tgl_perubahanstatus', 'keterangan_daftar', 'status_daftar', 'perusahaan_id', 'id');
     }
 }

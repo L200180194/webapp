@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\pendaftaran;
 use App\Models\User;
 use App\Models\perusahaan;
 use App\Models\posisi_magang;
@@ -33,6 +34,19 @@ class PendaftarPerusahaanCont extends Controller
         // dd($pendaftar);
         return view('dashboard.pendaftaran.show', [
             'daftar' => $pendaftar
+
+        ]);
+    }
+
+    public function detail($id, $pivotid)
+    {
+        $user = User::find($id);
+        $pivot = pendaftaran::find($pivotid);
+        // $users = $pendaftar->posisi_magangs;
+        // dd($pivot);
+        return view('dashboard.pendaftaran.detail', [
+            'daftar' => $user,
+            'pivot' => $pivot
 
         ]);
     }
