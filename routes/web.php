@@ -44,4 +44,5 @@ Route::get('/dashboard/profil', [ProfilPerusahaanContrl::class, 'index'])->middl
 Route::put('/dashboard/profil', [ProfilPerusahaanContrl::class, 'updateprofil'])->middleware('auth:perusahaan');
 Route::get('/dashboard/pendaftar', [PendaftarPerusahaanCont::class, 'index'])->middleware('auth:perusahaan');
 Route::get('/dashboard/pendaftar/{id}', [PendaftarPerusahaanCont::class, 'show'])->middleware('auth:perusahaan');
+Route::post('/dashboard/pendaftar/update/{id}', [PendaftarPerusahaanCont::class, 'update'])->middleware('auth:perusahaan');
 Route::get('/dashboard/pendaftar/detail/{id}/{pivotid}', [PendaftarPerusahaanCont::class, 'detail'])->middleware('auth:perusahaan');

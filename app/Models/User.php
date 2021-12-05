@@ -47,4 +47,21 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(posisi_magang::class, 'pendaftarans')->withPivot('tgl_daftar', 'tgl_perubahanstatus', 'keterangan_daftar', 'status_daftar', 'perusahaan_id', 'id');
     }
+
+    public function pendidikan()
+    {
+        return $this->belongsTo(pendidikan::class);
+    }
+    public function kota()
+    {
+        return $this->belongsTo(kota::class);
+    }
+    public function prodi()
+    {
+        return $this->belongsTo(prodi::class);
+    }
+    public function skill()
+    {
+        return $this->belongsTo(skill::class);
+    }
 }

@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\pendaftaran;
 use App\Models\User;
 use App\Models\perusahaan;
-use App\Models\posisi_magang;
+use App\Models\pendaftaran;
 use Illuminate\Http\Request;
+use App\Models\posisi_magang;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
 class PendaftarPerusahaanCont extends Controller
 {
@@ -41,13 +42,32 @@ class PendaftarPerusahaanCont extends Controller
     public function detail($id, $pivotid)
     {
         $user = User::find($id);
+        $kota = User::find($id)->kota;
+        $pendidikan = User::find($id)->pendidikan;
+        $prodi = User::find($id)->prodi;
+        $skill = User::find($id)->skill;
         $pivot = pendaftaran::find($pivotid);
         // $users = $pendaftar->posisi_magangs;
         // dd($pivot);
         return view('dashboard.pendaftaran.detail', [
             'daftar' => $user,
-            'pivot' => $pivot
-
+            'pivot' => $pivot,
+            'kota' => $kota,
+            'pendidikan' => $pendidikan,
+            'prodi' => $prodi,
+            'skill' => $skill,
         ]);
+    }
+    public function update(Request $request, $id)
+    {
+
+        $status = $request->status_daftar;
+        $user = $request->user_id;
+        $user = $request->pivot_id;
+
+        // dd($status);
+        pendaftaran::where('id', $id)->update(['status_daftar' => $status]);
+        // return Redirect('dashboard/profil')->with('success', 'Profil Berhasil di Update');
+        return Redirect::back()->with('success', 'Status Berhasil di Update');
     }
 }

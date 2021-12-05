@@ -26,7 +26,7 @@
         </a>
     </div>
     <div class="col-md-3">
-        <a href="" style="text-decoration:none">
+        <a href="/dashboard/pendaftar" style="text-decoration:none">
             <div class="card text-white bg-danger mb-3 " style="max-width: 18rem;">
 
                 <div class="card-body">
