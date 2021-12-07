@@ -1,4 +1,4 @@
-@extends('dashboard.layoutsdashboard.main')
+@extends('perusahaan.dashboard.layoutsdashboard.main')
 @section('container')
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
     <h1 class="h2">Posisi Magang
@@ -49,7 +49,7 @@
         {{-- <th>
             CREATED AT
         </th> --}}
-        <th>
+        <th class="col-2">
             ACTION
         </th>
 
@@ -66,14 +66,14 @@
                 <td>{{ $item->deadline_posisi }}</td>
                 {{-- <td>{{ $item->created_at }}</td> --}}
                 <td>
-                    <a href="/dashboard/posisi/{{ $item->id }}" class="badge bg-success"><i class="bi bi-eye" style="font-size: 1.5rem"></i></a>
+                    <a href="/dashboard/posisi/{{ $item->id }}" class="badge bg-success"><i class="bi bi-eye d-inline" style="font-size: 1.5rem"></i></a>
                     {{-- <form action="/dashboard/posisi/{{ $item->id }}" method="Get" class="d-inline">
                         
                         @csrf
                         <button class="badge bg-danger mt-2 border-0" ><i class="bi bi-eye" style="font-size: 1.5rem"></i></button>
                     </form> --}}
                     {{-- <a href="{{ route('dashboard.posisi.show', $item) }}" class="badge bg-success"><i class="bi bi-eye" style="font-size: 1.5rem"></i></a> --}}
-                    <a href="/dashboard/posisi/{{ $item->id }}/edit" class="badge bg-primary mt-2"><i class="bi bi-pencil-square" style="font-size: 1.5rem"></i></a>
+                    <a href="/dashboard/posisi/{{ $item->id }}/edit" class="badge bg-primary mt-2"><i class="bi bi-pencil-square d-inline" style="font-size: 1.5rem"></i></a>
                     <form action="/dashboard/posisi/{{ $item->id }}" method="POST" class="d-inline">
                         @method('delete')
                         @csrf

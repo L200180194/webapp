@@ -6,11 +6,7 @@
     {{-- <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search"> --}}
     <div class="navbar-nav" >
         <div class="nav-item text-nowrap">
-            <form action="/logoutperusahaan" method="POST">
-                @csrf
-                <button class="btn btn-primary"><i class="bi bi-arrow-right-square"></i> Log Out</button>
-                {{-- <a class="nav-link px-3" href="#">Sign out</a> --}}
-            </form>
+            
         </div>
     </div>
 </header>

@@ -17,7 +17,7 @@ class PosisiMagangController extends Controller
      */
     public function index()
     {
-        return  view('dashboard.posisi.index', [
+        return  view('perusahaan.dashboard.posisi.index', [
             'posisis' => posisi_magang::where('perusahaan_id', Auth::guard('perusahaan')->user()->id)->get()
         ]);
     }
@@ -29,7 +29,7 @@ class PosisiMagangController extends Controller
      */
     public function create()
     {
-        return view('dashboard.posisi.create');
+        return view('perusahaan.dashboard.posisi.create');
     }
 
     /**
@@ -67,7 +67,7 @@ class PosisiMagangController extends Controller
     {
         // return $posisi_magang;
         $posisi_magang = posisi_magang::find($id);
-        return view('dashboard.posisi.show', ['posisi' => $posisi_magang]);
+        return view('perusahaan.dashboard.posisi.show', ['posisi' => $posisi_magang]);
     }
 
     /**
@@ -81,7 +81,7 @@ class PosisiMagangController extends Controller
     {
         $posisi_magang = posisi_magang::find($id);
 
-        return view('dashboard.posisi.edit', [
+        return view('perusahaan.dashboard.posisi.edit', [
             'posisi' => $posisi_magang
         ]);
     }
@@ -127,6 +127,8 @@ class PosisiMagangController extends Controller
      */
     public function destroy($id)
     {
+        $posisi = posisi_magang::find($id);
+        Storage::delete($posisi->foto_posisi);
         posisi_magang::destroy($id);
         return Redirect('dashboard/posisi')->with('success', 'Posisi Magang Berhasil di Hapus');
     }

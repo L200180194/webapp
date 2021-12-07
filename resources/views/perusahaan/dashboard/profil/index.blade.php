@@ -1,8 +1,13 @@
-@extends('dashboard.layoutsdashboard.main')
+@extends('perusahaan.dashboard.layoutsdashboard.main')
 @section('container')
 @if (session()->has('success'))
         <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
             {{ session('success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+@elseif (session()->has('danger'))
+        <div class="alert alert-primary alert-dismissible fade show mt-3" role="alert">
+            {{ session('danger') }}
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     
@@ -228,7 +233,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="">
+                    <form action="/dashboard/profil/update-password" method="POST">
                         @csrf
                         <div class="mb-3 mx-1">
                             <fieldset disabled>
@@ -251,7 +256,7 @@
                             @enderror
                         </div>
                         <div class="mb-3 mx-1">
-                            <label for="passwordbaru" class="form-label @error('passwordbaru') is-invalid @enderror">Masukkan Password Lama</label>
+                            <label for="passwordbaru" class="form-label @error('passwordbaru') is-invalid @enderror">Masukkan Password baru</label>
                             <input type="password" class="form-control" id="passwordbaru" name="passwordbaru"  placeholder="password baru" required>
                             @error('passwordbaru')
                                     <div class="invalid-feedback">
@@ -259,16 +264,33 @@
                                     </div>
                             @enderror
                         </div>
-                    </form>
+                        <div class="mb-3 mx-1">
+                            <label for="passwordbaru_confirmation" class="form-label @error('passwordbaru_confirmation') is-invalid @enderror">Masukkan Ulang Password baru</label>
+                            <input type="password" class="form-control" id="passwordbaru_confirmation" name="passwordbaru_confirmation"  placeholder="password baru" required>
+                            @error('passwordbaru')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                            @enderror
+                        </div>
+                    
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
                 </div>
             </div>
+        </form>
         </div>
     </div>
-    <a href="" class="btn btn-danger mb-4 ">Logout</a>
+    <form action="/logoutperusahaan" method="POST">
+        @csrf
+        <button class="btn btn-danger mb-4">Log Out</button>
+        {{-- <a class="nav-link px-3" href="#">Sign out</a> --}}
+    </form>
+    {{-- Auth::guard('perusahaan')->user()->surat_perusahaan --}}
+    {{-- <embed src="{{asset('storage/' . Auth::guard('perusahaan')->user()->surat_perusahaan )}}" type="application/pdf" width="600" height="400"> --}}
+
     {{-- {{ Auth::guard('perusahaan')->user() }} --}}
     
 </div>

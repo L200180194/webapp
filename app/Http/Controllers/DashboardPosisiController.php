@@ -17,7 +17,7 @@ class DashboardPosisiController extends Controller
      */
     public function index()
     {
-        return  view('dashboard.posisi.index', [
+        return  view('perusahaan.dashboard.posisi.index', [
             'posisis' => posisi_magang::where('perusahaan_id', Auth::guard('perusahaan')->user()->id)->get()
         ]);
     }
@@ -29,7 +29,7 @@ class DashboardPosisiController extends Controller
      */
     public function create()
     {
-        return view('dashboard.posisi.create');
+        return view('perusahaan.dashboard.posisi.create');
     }
 
     /**

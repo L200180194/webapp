@@ -6,13 +6,14 @@ use App\Models\perusahaan;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
 class ProfilPerusahaanContrl extends Controller
 {
     public function index()
     {
-        return view('dashboard.profil.index');
+        return view('perusahaan.dashboard.profil.index');
     }
 
     public function updateprofil(Request $request)
@@ -58,5 +59,38 @@ class ProfilPerusahaanContrl extends Controller
         // // posisi_magang::create($validatedData);
         // posisi_magang::where('id', $id)->update($validatedData);
         // return Redirect('dashboard/posisi')->with('success', 'Posisi Magang Berhasil di Update');
+    }
+
+    public function uppass(Request $request)
+    {
+        $request->validate(
+            [
+                'password' => 'required|min:8',
+                'passwordbaru' => 'required|min:8|confirmed',
+                'passwordbaru_confirmation' => 'required|min:8',
+            ]
+        );
+        $hashedpass = Auth::guard('perusahaan')->user()->password;
+        // dd(Hash::check($request->password, $hashedpass));
+        if (Hash::check($request->password, $hashedpass)) {
+            if (Hash::check($request->passwordbaru, $hashedpass) == FALSE) {
+                // pendaftaran::where('id', $id)->update(['status_daftar' => $status]);
+                $newhashedpass = bcrypt($request->passwordbaru);
+                perusahaan::where('id', Auth::guard('perusahaan')->user()->id)->update(['password' => $newhashedpass]);
+
+                session()->flash('success', 'password updated successfully');
+                return redirect()->back();
+            } else {
+                session()->flash('message', 'new password can not be the old password!');
+                return redirect()->back();
+            }
+        } else {
+            session()->flash('message', 'old password doesnt matched');
+            return redirect()->back();
+        }
+    }
+    public function back()
+    {
+        return redirect()->back();
     }
 }

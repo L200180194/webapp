@@ -1,4 +1,4 @@
-@extends('dashboard.layoutsdashboard.main')
+@extends('perusahaan.dashboard.layoutsdashboard.main')
 @section('container')
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
     <h1 class="h2">Welcome {{ Auth::guard('perusahaan')->user()->nama_perusahaan }}
@@ -9,7 +9,7 @@
         <a href="/dashboard/posisi" style="text-decoration:none">
             <div class="card text-white bg-success mb-3 " style="max-width: 18rem;">
                 <!-- <div class="card-header"><strong>Posisi Magang</strong> </div> -->
-                <div class="card-body">
+                <div class="card-body" style="max-height: 20rem">
                     <div class="row g-0">
                         <div class="col-md-3">
                             <i class="bi bi-journal-text" style="font-size: 4.5rem; "></i>

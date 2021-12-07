@@ -1,7 +1,7 @@
-@extends('dashboard.layoutsdashboard.main')
+@extends('perusahaan.dashboard.layoutsdashboard.main')
 @section('container')
-<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h1 class="h2">Detail Pendaftar || {{ $daftar->name }}
+<div class="d-flex  flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <a href="/dashboard/pendaftar/{{$pivot->posisi_magang_id}}" class="badge bg-danger"><i class="bi bi-arrow-left-square " style="font-size: 1.5rem"></i></a><h1 class="h2 mx-2">Detail Pendaftar || {{ $daftar->name }}
     </h1>
 </div>
 @if (session()->has('success'))
@@ -11,6 +11,7 @@
         </div>
     
 @endif
+
 <div class="rounded mx-auto d-block text-center mt-5 mb-3 ">
     <img src="{{$daftar->foto_user}}" class="img-thumbnail mt-2 img-fluid" alt="..." width="250" height="250">
 </div>
@@ -37,42 +38,6 @@
         <h6>No. Tlp</h6>
     </div>
     <div class="col fs-6">{{$daftar->notlp_user}}</div>
-</div>
-<div class="row mb-2">
-    <div class="col-4">
-        <h6>Kota</h6>
-    </div>
-    <div class="col fs-6">{{$daftar->kota_id}}</div>
-</div>
-<div class="row mb-2">
-    <div class="col-4">
-        <h6>Pendidikan</h6>
-    </div>
-    <div class="col fs-6">{{$daftar->pendidikan_id}}</div>
-</div>
-<div class="row mb-2">
-    <div class="col-4">
-        <h6>Program Studi</h6>
-    </div>
-    <div class="col fs-6">{{$daftar->prodi_id}}</div>
-</div>
-<div class="row mb-2">
-    <div class="col-4">
-        <h6>Skill</h6>
-    </div>
-    <div class="col fs-6">{{$daftar->skill_id}}</div>
-</div>
-<div class="row mb-2">
-    <div class="col-4">
-        <h6>CV</h6>
-    </div>
-    <div class="col fs-6">{{$daftar->cv_user}}</div>
-</div>
-<div class="row mb-2">
-    <div class="col-4">
-        <h6>Tanggal daftar</h6>
-    </div>
-    <div class="col fs-6">{{$pivot->tgl_daftar}}</div>
 </div>
 <div class="row mb-2">
     <div class="col-4">
@@ -115,6 +80,19 @@
         @endif
     </div>
 </div>
+<div class="row mb-2">
+    <div class="col-4">
+        <h6>CV</h6>
+    </div>
+    <div class="col fs-6">{{$daftar->cv_user}}</div>
+</div>
+<div class="row mb-2">
+    <div class="col-4">
+        <h6>Tanggal daftar</h6>
+    </div>
+    <div class="col fs-6">{{$pivot->tgl_daftar}}</div>
+</div>
+
 {{-- MODAL UBAH STATUS --}}
 <!-- Button trigger modal -->
 <button type="button" class="btn btn-primary mt-3 mb-5" data-bs-toggle="modal" data-bs-target="#ubahstatus">
@@ -146,9 +124,6 @@
                             <option value="Ditolak">Ditolak</option>
                             <option value="Proses" selected>Proses</option>
                         @endif
-                        {{-- <option value="Diterima">Diterima</option>
-                            <option value="Ditolak">Ditolak</option>
-                            <option value="Proses" selected>Proses</option> --}}
                         
                     </select>
                     <input type="hidden" value="{{ $daftar->id }}" name="user_id" id="user_id">
@@ -164,13 +139,5 @@
         </div>
     </div>
 </div>
-<div>{{ $daftar }}</div>
 
-<h1>Pembatas</h1>
-<div>{{ $pivot }}</div>
-<h1>Pembatas Lagi</h1>
-{{ $kota }}
-{{ $pendidikan }}
-{{ $prodi }}
-{{ $skill }}
 @endsection

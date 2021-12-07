@@ -23,7 +23,7 @@ class PendaftarPerusahaanCont extends Controller
         // $posisi_magang = posisi_magang::where('perusahaan_id', Auth::guard('perusahaan')->user()->id)->get();
         // $users = $posisi_magang['id']->users;
         // dd($users);
-        return view('dashboard.pendaftaran.index', [
+        return view('perusahaan.dashboard.pendaftaran.index', [
             'pendaftars' => $posisi_magang
         ]);
     }
@@ -33,7 +33,7 @@ class PendaftarPerusahaanCont extends Controller
         $pendaftar = posisi_magang::find($id);
         $users = $pendaftar->users;
         // dd($pendaftar);
-        return view('dashboard.pendaftaran.show', [
+        return view('perusahaan.dashboard.pendaftaran.show', [
             'daftar' => $pendaftar
 
         ]);
@@ -49,7 +49,7 @@ class PendaftarPerusahaanCont extends Controller
         $pivot = pendaftaran::find($pivotid);
         // $users = $pendaftar->posisi_magangs;
         // dd($pivot);
-        return view('dashboard.pendaftaran.detail', [
+        return view('perusahaan.dashboard.pendaftaran.detail', [
             'daftar' => $user,
             'pivot' => $pivot,
             'kota' => $kota,
