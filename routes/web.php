@@ -43,6 +43,7 @@ Route::resource('/dashboard/posisi', PosisiMagangController::class)->middleware(
 Route::get('/dashboard/profil', [ProfilPerusahaanContrl::class, 'index'])->middleware('auth:perusahaan');
 Route::put('/dashboard/profil', [ProfilPerusahaanContrl::class, 'updateprofil'])->middleware('auth:perusahaan');
 Route::POST('/dashboard/profil/update-password', [ProfilPerusahaanContrl::class, 'uppass'])->middleware('auth:perusahaan');
+Route::get('/dashboard/profil/surat-perusahaan', [ProfilPerusahaanContrl::class, 'surat'])->middleware('auth:perusahaan');
 Route::get('/dashboard/pendaftar', [PendaftarPerusahaanCont::class, 'index'])->middleware('auth:perusahaan');
 Route::get('/dashboard/pendaftar/{id}', [PendaftarPerusahaanCont::class, 'show'])->middleware('auth:perusahaan');
 Route::post('/dashboard/pendaftar/update/{id}', [PendaftarPerusahaanCont::class, 'update'])->middleware('auth:perusahaan');

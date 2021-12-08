@@ -84,7 +84,7 @@
                 <td>{{ $item->alamat_user }}</td>
                 <td>
                     {{-- {{ $item->pivot->status_daftar }} --}}
-                    @if ($item->pivot->status_daftar == 'proses' )
+                    @if ($item->pivot->status_daftar == 'Proses' )
                     <div class="col fs-6"><span class="badge bg-warning text-dark">Proses</span></div>
 
                     @elseif ($item->pivot->status_daftar == 'Diterima')

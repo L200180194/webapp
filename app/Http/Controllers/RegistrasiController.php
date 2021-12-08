@@ -15,7 +15,8 @@ class RegistrasiController extends Controller
     {
         $validatedData = $request->validate(
             [
-                'email' => 'required|email:dns|unique:perusahaans',
+                // 'email' => 'required|email:dns|unique:perusahaans',
+                'email' => 'required|unique:perusahaans',
                 'password' => 'required|min:8',
                 'nama_perusahaan' => 'required|unique:perusahaans',
                 'notlp_perusahaan' => 'required',
