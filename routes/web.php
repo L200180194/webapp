@@ -29,12 +29,16 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('perusahaan.dashboard.index');
 })->middleware('auth:perusahaan');
+Route::get('/ad', function () {
+    return view('admin.index');
+})->middleware('auth:admin')->name('admin');
 
 Route::get('/login', [loginController::class, 'index'])->middleware('guest');
 Route::get('/registrasi', [RegistrasiController::class, 'index'])->middleware('guest');
 Route::post('/registrasi', [RegistrasiController::class, 'store'])->middleware('guest');
 Route::Post('/login', [loginController::class, 'authenticate'])->middleware('guest');
 Route::Post('/logoutperusahaan', [loginController::class, 'logout'])->middleware('auth:perusahaan');
+Route::Post('/logoutadmin', [loginController::class, 'logoutadmin'])->middleware('auth:admin');
 // Route::resource('/dashboard/posisi', DashboardPosisiController::class)->middleware('auth:perusahaan');
 Route::resource('/dashboard/posisi', PosisiMagangController::class)->middleware('auth:perusahaan');
 // Route::resource('/dashboard/posisi', PosisimController::class)->middleware('auth:perusahaan');

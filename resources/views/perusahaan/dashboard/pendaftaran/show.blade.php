@@ -97,7 +97,7 @@
                 </td>
                 
                 <td>
-                    <a href="/dashboard/pendaftar/detail/{{ $item->id }}/{{ $item->pivot->id }}" class="badge bg-primary mt-2"><i class="bi bi-pencil-square" style="font-size: 1.5rem"></i></a>
+                    <a href="/dashboard/pendaftar/detail/{{ $item->id }}/{{ $item->pivot->id }}" class="badge bg-primary mt-2"><i class="bi bi-eye d-inline" style="font-size: 1.5rem"></i></a>
                 </td>
             </tr>
             @endforeach

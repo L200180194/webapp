@@ -11,6 +11,8 @@ class loginController extends Controller
     {
         if (Auth::guard('perusahaan')->check()) {
             return redirect()->intended('/dashboard');
+        } elseif (Auth::guard('admin')->check()) {
+            return redirect()->intended('/ad');
         }
         return view('login');
     }
@@ -26,6 +28,12 @@ class loginController extends Controller
             auth::shouldUse('perusahaan');
 
             return redirect()->intended('/dashboard');
+        } elseif (Auth::guard('admin')->attempt($credentials)) {
+            $request->session()->regenerate();
+            auth::shouldUse('admin');
+            // return ('HAIII ADMIN');
+            // return view('admin.index');
+            return redirect()->route('admin');
         }
 
         return back()->with('loginError', 'Login Gagal !');
@@ -39,5 +47,15 @@ class loginController extends Controller
         $request->session()->regenerateToken();
 
         return redirect('/');
+    }
+    public function logoutadmin(Request $request)
+    {
+        Auth::guard('admin')->logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect('/login');
     }
 }

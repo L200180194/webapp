@@ -66,14 +66,14 @@
                 <td>{{ $item->deadline_posisi }}</td>
                 {{-- <td>{{ $item->created_at }}</td> --}}
                 <td>
-                    <a href="/dashboard/posisi/{{ $item->id }}" class="badge bg-success"><i class="bi bi-eye d-inline" style="font-size: 1.5rem"></i></a>
+                    <a href="/dashboard/posisi/{{ $item->id }}" style="text-decoration:none" class="badge bg-success"><i class="bi bi-eye d-inline" style="font-size: 1.5rem"></i></a>
                     {{-- <form action="/dashboard/posisi/{{ $item->id }}" method="Get" class="d-inline">
                         
                         @csrf
                         <button class="badge bg-danger mt-2 border-0" ><i class="bi bi-eye" style="font-size: 1.5rem"></i></button>
                     </form> --}}
                     {{-- <a href="{{ route('dashboard.posisi.show', $item) }}" class="badge bg-success"><i class="bi bi-eye" style="font-size: 1.5rem"></i></a> --}}
-                    <a href="/dashboard/posisi/{{ $item->id }}/edit" class="badge bg-primary mt-2"><i class="bi bi-pencil-square d-inline" style="font-size: 1.5rem"></i></a>
+                    <a href="/dashboard/posisi/{{ $item->id }}/edit" style="text-decoration:none" class="badge bg-primary mt-2"><i class="bi bi-pencil-square d-inline" style="font-size: 1.5rem"></i></a>
                     <form action="/dashboard/posisi/{{ $item->id }}" method="POST" class="d-inline">
                         @method('delete')
                         @csrf
