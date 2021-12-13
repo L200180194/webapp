@@ -12,7 +12,7 @@ class loginController extends Controller
         if (Auth::guard('perusahaan')->check()) {
             return redirect()->intended('/dashboard');
         } elseif (Auth::guard('admin')->check()) {
-            return redirect()->intended('/ad');
+            return redirect()->intended('/admin');
         }
         return view('login');
     }

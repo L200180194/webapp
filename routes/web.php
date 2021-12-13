@@ -3,13 +3,15 @@
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\loginController;
+use App\Http\Controllers\ProfilAdminCont;
 use App\Http\Controllers\PosisimController;
+use App\Http\Controllers\PerusahaanAdminCont;
 use App\Http\Controllers\PerusahaanController;
 use App\Http\Controllers\RegistrasiController;
 use App\Http\Controllers\PosisiMagangController;
 use App\Http\Controllers\ProfilPerusahaanContrl;
-use App\Http\Controllers\DashboardPosisiController;
 use App\Http\Controllers\PendaftarPerusahaanCont;
+use App\Http\Controllers\DashboardPosisiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,7 +31,7 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('perusahaan.dashboard.index');
 })->middleware('auth:perusahaan');
-Route::get('/ad', function () {
+Route::get('/admin', function () {
     return view('admin.index');
 })->middleware('auth:admin')->name('admin');
 
@@ -52,4 +54,9 @@ Route::get('/dashboard/pendaftar', [PendaftarPerusahaanCont::class, 'index'])->m
 Route::get('/dashboard/pendaftar/{id}', [PendaftarPerusahaanCont::class, 'show'])->middleware('auth:perusahaan');
 Route::post('/dashboard/pendaftar/update/{id}', [PendaftarPerusahaanCont::class, 'update'])->middleware('auth:perusahaan');
 Route::get('/dashboard/pendaftar/detail/{id}/{pivotid}', [PendaftarPerusahaanCont::class, 'detail'])->middleware('auth:perusahaan');
+Route::get('/admin/profiladmin', [ProfilAdminCont::class, 'index'])->middleware('auth:admin');
+Route::get('/admin/profiladmin/edit', [ProfilAdminCont::class, 'editform'])->middleware('auth:admin');
+Route::POST('/admin/profiladmin/edit/update-password', [ProfilAdminCont::class, 'uppass'])->middleware('auth:admin');
+Route::get('/admin/perusahaan', [PerusahaanAdminCont::class, 'index'])->middleware('auth:admin');
+Route::get('/admin/perusahaan/detail{id}', [PerusahaanAdminCont::class, 'detail'])->middleware('auth:admin');
 // Route::get('/dashboard/back', [PendaftarPerusahaanCont::class, 'back'])->middleware('auth:perusahaan');
