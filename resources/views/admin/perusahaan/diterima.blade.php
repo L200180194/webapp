@@ -22,8 +22,8 @@
 </div> --}}
 <div class="shadow p-3 mb-5 bg-body rounded mt-3">
     <nav class="nav nav-pills nav-justified ">
-        <a class="nav-link active" aria-current="page" href="/admin/perusahaan">Proses</a>
-        <a class="nav-link" href="/admin/perusahaan/diterima">Diterima</a>
+        <a class="nav-link "  href="/admin/perusahaan">Proses</a>
+        <a class="nav-link active" aria-current="page" href="/admin/perusahaan/diterima">Diterima</a>
         <a class="nav-link" href="/admin/perusahaan/ditolak">Ditolak</a>
     </nav>
 </div>

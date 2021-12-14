@@ -58,5 +58,9 @@ Route::get('/admin/profiladmin', [ProfilAdminCont::class, 'index'])->middleware(
 Route::get('/admin/profiladmin/edit', [ProfilAdminCont::class, 'editform'])->middleware('auth:admin');
 Route::POST('/admin/profiladmin/edit/update-password', [ProfilAdminCont::class, 'uppass'])->middleware('auth:admin');
 Route::get('/admin/perusahaan', [PerusahaanAdminCont::class, 'index'])->middleware('auth:admin');
+Route::get('/admin/perusahaan/diterima', [PerusahaanAdminCont::class, 'diterima'])->middleware('auth:admin');
+Route::get('/admin/perusahaan/ditolak', [PerusahaanAdminCont::class, 'ditolak'])->middleware('auth:admin');
+Route::get('/admin/perusahaan/back{status_perusahaan}', [PerusahaanAdminCont::class, 'backprev'])->middleware('auth:admin');
 Route::get('/admin/perusahaan/detail{id}', [PerusahaanAdminCont::class, 'detail'])->middleware('auth:admin');
+Route::post('/admin/perusahaan/detail/update{id}', [PerusahaanAdminCont::class, 'update'])->middleware('auth:admin');
 // Route::get('/dashboard/back', [PendaftarPerusahaanCont::class, 'back'])->middleware('auth:perusahaan');

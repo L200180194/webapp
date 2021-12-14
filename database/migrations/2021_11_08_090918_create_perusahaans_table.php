@@ -20,7 +20,7 @@ class CreatePerusahaansTable extends Migration
             $table->string("foto_perusahaan")->nullable();
             $table->string("email")->unique();
             $table->string("password");
-            $table->string("status_perusahaan")->default('unverif');
+            $table->string("status_perusahaan")->default('proses');
             $table->string("surat_perusahaan")->nullable();
             $table->timestamp("tgl_statusperusahaan")->useCurrent()->nullable();
             $table->text("deskripsi_perusahaan")->nullable();
