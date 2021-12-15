@@ -37,9 +37,9 @@
             <th>
                 NAMA PERUSAHAAN
             </th>
-            <th>
+            {{-- <th>
                 FOTO
-            </th>
+            </th> --}}
             {{-- <th>
                 SURAT
             </th> --}}
@@ -59,7 +59,7 @@
                 <tr>
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $item->nama_perusahaan }}</td>
-                    <td> <img src="{{ asset('storage/' . $item->foto_perusahaan) }}" height="30" width="30" alt=""> </td>
+                    {{-- <td> <img src="{{ asset('storage/' . $item->foto_perusahaan) }}" height="30" width="30" alt=""> </td> --}}
                     <td>{{ $item->status_perusahaan }}</td>
                     <td>
                         @if ( $item->surat_perusahaan == null  )
@@ -88,7 +88,7 @@
             </tbody>
         </table>
     </div>
-    {{ $proses }}
+    {{-- {{ $proses }} --}}
 </div>
     {{-- <h4>{{ Auth::guard('admin')->user() }}</h4> --}}
     @endsection

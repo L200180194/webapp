@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\loginController;
@@ -63,4 +64,6 @@ Route::get('/admin/perusahaan/ditolak', [PerusahaanAdminCont::class, 'ditolak'])
 Route::get('/admin/perusahaan/back{status_perusahaan}', [PerusahaanAdminCont::class, 'backprev'])->middleware('auth:admin');
 Route::get('/admin/perusahaan/detail{id}', [PerusahaanAdminCont::class, 'detail'])->middleware('auth:admin');
 Route::post('/admin/perusahaan/detail/update{id}', [PerusahaanAdminCont::class, 'update'])->middleware('auth:admin');
+Route::resource('/admin/admins', AdminController::class)->middleware('auth:admin');
+Route::get('/admin/admin/berhenti', [AdminController::class, 'berhenti'])->middleware('auth:admin');
 // Route::get('/dashboard/back', [PendaftarPerusahaanCont::class, 'back'])->middleware('auth:perusahaan');

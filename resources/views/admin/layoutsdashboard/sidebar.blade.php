@@ -14,7 +14,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link " href="">
+                <a class="nav-link {{ Request::is('admin/admins*')?'active':'' }} " href="/admin/admins">
                     
                     <i class="bi bi-people-fill" style="font-size: 1.3rem; "></i>
                     Admin

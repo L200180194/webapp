@@ -37,9 +37,9 @@
             <th>
                 NAMA PERUSAHAAN
             </th>
-            <th>
+            {{-- <th>
                 FOTO
-            </th>
+            </th> --}}
             {{-- <th>
                 SURAT
             </th> --}}
@@ -47,9 +47,9 @@
             <th>
                 STATUS 
             </th>
-            <th>
+            {{-- <th>
                 Kelengkapan
-            </th>
+            </th> --}}
             <th class="col-2">
                 ACTION
             </th>
@@ -59,9 +59,9 @@
                 <tr>
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $item->nama_perusahaan }}</td>
-                    <td> <img src="{{ asset('storage/' . $item->foto_perusahaan) }}" height="30" width="30" alt=""> </td>
+                    {{-- <td> <img src="{{ asset('storage/' . $item->foto_perusahaan) }}" height="30" width="30" alt=""> </td> --}}
                     <td>{{ $item->status_perusahaan }}</td>
-                    <td>
+                    {{-- <td>
                         @if ( $item->surat_perusahaan == null  )
                         <span class="badge bg-warning text-dark">Belum Lengkap</span>
                             
@@ -72,7 +72,7 @@
                         <span class="badge bg-success ">Bisa Direview</span>
                             
                         @endif
-                        {{-- {{ $item->status_perusahaan }}</td> --}}
+                    </td> --}}
                     <td>
                         <a href="/admin/perusahaan/detail{{ $item->id }}" style="text-decoration:none" class="badge bg-info"><i class="bi bi-eye d-inline" style="font-size: 1.5rem"></i></a>
                         {{-- <a href="/dashboard/posisi/{{ $item->id }}/edit" style="text-decoration:none" class="badge bg-primary mt-2"><i class="bi bi-pencil-square d-inline" style="font-size: 1.5rem"></i></a> --}}
@@ -88,7 +88,7 @@
             </tbody>
         </table>
     </div>
-    {{ $proses }}
+    {{-- {{ $proses }} --}}
 </div>
     {{-- <h4>{{ Auth::guard('admin')->user() }}</h4> --}}
     @endsection

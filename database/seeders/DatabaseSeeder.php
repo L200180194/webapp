@@ -23,14 +23,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\User::factory(10)->create();
-        Admin::factory(10)->create();
-        Kota::factory(10)->create();
-        Pendaftaran::factory(10)->create();
-        Perusahaan::factory(10)->create();
-        Posisi_magang::factory(10)->create();
-        Posisim::factory(10)->create();
-        Skill::factory(10)->create();
+        \App\Models\User::factory(20)->create();
+        Admin::factory(20)->create();
+        Kota::factory(20)->create();
+        Pendaftaran::factory(20)->create();
+        Perusahaan::factory(20)->create();
+        Posisi_magang::factory(20)->create();
+        Posisim::factory(20)->create();
+        Skill::factory(20)->create();
 
         Pendidikan::create([
             'tingkat_pendidikan' => 'Sarjana'

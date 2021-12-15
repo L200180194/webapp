@@ -20,6 +20,8 @@ class CreateAdminsTable extends Migration
             $table->string("tlp_admin");
             $table->string("email")->unique();
             $table->string("password");
+            $table->string("level")->default('admin');
+            $table->string("status")->default('aktif');
             $table->timestamps();
         });
     }

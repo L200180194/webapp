@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\admin;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class AdminController extends Controller
 {
@@ -14,8 +15,13 @@ class AdminController extends Controller
      */
     public function index()
     {
-        //
+        $admin = admin::where('status', 'aktif')->get();
+        // dd($admin);
+        return view('admin.admins.index', [
+            'admin' => $admin
+        ]);
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -24,7 +30,7 @@ class AdminController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.admins.create');
     }
 
     /**
@@ -35,7 +41,19 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate(
+            [
+                'nama_admin' => 'required|max:50',
+                'alamat_admin' => 'required|max:200',
+                'tlp_admin' => 'required|max:30',
+                'email' => 'required|unique:admins|unique:perusahaans',
+                'password' => 'required|min:8|confirmed',
+                'password_confirmation' => 'required|min:8',
+
+            ]
+        );
+        admin::create($validatedData);
+        return Redirect('admin/admins')->with('success', 'Admin Berhasil di Tambahkan');
     }
 
     /**
@@ -57,7 +75,10 @@ class AdminController extends Controller
      */
     public function edit(admin $admin)
     {
-        //
+        // dd($admin);
+        return view('admin.admins.edit', [
+            'admin' => $admin
+        ]);
     }
 
     /**
@@ -69,7 +90,16 @@ class AdminController extends Controller
      */
     public function update(Request $request, admin $admin)
     {
-        //
+        // return $admin->id;
+        // dd($request, $admin);
+        // pendaftaran::where('id', $id)->update(['status_daftar' => $status]);
+        admin::where('id', $admin->id)->update([
+            'status' => $request->status,
+            'level' => $request->level,
+
+        ]);
+        return Redirect::back()->with('success', 'Status Berhasil di Update');
+        // $admin->update();
     }
 
     /**
@@ -81,5 +111,13 @@ class AdminController extends Controller
     public function destroy(admin $admin)
     {
         //
+    }
+    public function berhenti()
+    {
+        $admin = admin::where('status', 'berhenti')->get();
+        // dd($admin);
+        return view('admin.admins.berhenti', [
+            'admin' => $admin
+        ]);
     }
 }
