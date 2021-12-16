@@ -4,18 +4,21 @@ namespace App\Http\Controllers;
 
 use App\Models\perusahaan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 
 class PerusahaanAdminCont extends Controller
 {
     public function index()
     {
-        $proses = perusahaan::where('status_perusahaan', 'proses')->get();
+        $proses = perusahaan::where('status_perusahaan', 'proses')->whereNull('surat_perusahaan')->get();
+        $prosesver = perusahaan::where('status_perusahaan', 'proses')->whereNotNull('surat_perusahaan')->get();
         // $proses = perusahaan::all();
         // dd($proses);
         // 'posisis' => posisi_magang::where('perusahaan_id', Auth::guard('perusahaan')->user()->id)->get()
         return view('admin.perusahaan.index', [
-            'proses' => $proses
+            'proses' => $proses,
+            'prosesver' => $prosesver
         ]);
     }
     public function diterima()
@@ -51,10 +54,11 @@ class PerusahaanAdminCont extends Controller
     {
 
         $status = $request->status_perusahaan;
+        $admin = Auth::guard('admin')->user()->id;
         // $user = $request->perusahaan_id;
 
         // dd($status);
-        perusahaan::where('id', $id)->update(['status_perusahaan' => $status]);
+        perusahaan::where('id', $id)->update(['status_perusahaan' => $status, 'admin_id' => $admin]);
         // return Redirect('dashboard/profil')->with('success', 'Profil Berhasil di Update');
         return Redirect::back()->with('success', 'Status Berhasil di Update');
     }

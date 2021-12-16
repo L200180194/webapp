@@ -23,7 +23,7 @@ class PerusahaanFactory extends Factory
             'tgl_statusperusahaan' => $this->faker->dateTimeThisMonth(),
             'deskripsi_perusahaan' => $this->faker->paragraph(mt_rand(10, 15)),
             'notlp_perusahaan' => $this->faker->phoneNumber(),
-            'admin_id' => mt_rand(1, 3),
+
         ];
     }
 }

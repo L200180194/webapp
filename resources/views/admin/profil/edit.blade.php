@@ -11,7 +11,7 @@
     
 </div>
 <div class="row justify-content-center">
-    <div class="shadow p-3 mt-4 col-5 bg-body rounded "><h5>Edit Password</h5></div>
+    <div class="shadow p-3 mt-4 col-5 bg-body rounded d-flex justify-content-center "><h5>Edit Password</h5></div>
 </div>
 
 <div class="row justify-content-center">

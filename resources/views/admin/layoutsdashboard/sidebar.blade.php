@@ -7,7 +7,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link " href="">
+                <a class="nav-link {{ Request::is('admin/posisimagang*')?'active':'' }}" href="/admin/posisimagang">
                     
                     <i class="bi bi-journal-text"style="font-size: 1.3rem; "></i>
                     Posisi Magang

@@ -18,13 +18,19 @@
     @else
     <img src="{{asset('storage/' . Auth::guard('perusahaan')->user()->foto_perusahaan )}}" class="img-thumbnail mt-2 img-fluid" alt="..." width="250" height="250">
     @endif
-    
 </div> --}}
 <div class="card justify-content-center mt-5">
     <div class="shadow p-3  bg-body rounded "><h5>PROFIL PERUSAHAAN</h5></div>
 </div>
 
 <div class="card shadow p-3 mb-5 bg-body rounded mt-3">
+    @if ($perusahaan->admin != null)
+        @if ($perusahaan->status_perusahaan == 'verifikasi')
+        <div class="d-flex justify-content-end "><h5><span class="badge rounded-pill bg-success">Diverifikasi Oleh Admin {{  $perusahaan->admin->nama_admin }} </span></h5></div>
+        @elseif ($perusahaan->status_perusahaan == 'ditolak')
+        <div class="d-flex justify-content-end "><h5><span class="badge rounded-pill bg-danger">Ditolak Oleh Admin {{  $perusahaan->admin->nama_admin }} </span></h5></div>
+        @endif
+    @endif
     {{-- GAMBAR PROFIL --}}
     <div class="rounded mx-auto d-block text-center mt-5 ">
         @if ( $perusahaan->foto_perusahaan == null)
@@ -115,7 +121,7 @@
         </form> --}}
     </div>
 </div>
-    {{ $perusahaan }}
+    {{ $perusahaan->admin }}
 </div>
 
 

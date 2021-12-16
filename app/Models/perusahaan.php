@@ -38,8 +38,16 @@ class perusahaan extends Authenticatable
     {
         return $this->hasMany(posisi_magang::class);
     }
+    public function posisi_magangs()
+    {
+        return $this->hasMany(posisi_magang::class);
+    }
     //     public function Posisim()
     //     {
     //         return $this->hasMany(Posisim::class, 'posisim_id');
     //     }
+    public function admin()
+    {
+        return $this->belongsTo(admin::class);
+    }
 }

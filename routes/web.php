@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AdminPosisiCont;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\loginController;
@@ -66,4 +67,6 @@ Route::get('/admin/perusahaan/detail{id}', [PerusahaanAdminCont::class, 'detail'
 Route::post('/admin/perusahaan/detail/update{id}', [PerusahaanAdminCont::class, 'update'])->middleware('auth:admin');
 Route::resource('/admin/admins', AdminController::class)->middleware('auth:admin');
 Route::get('/admin/admin/berhenti', [AdminController::class, 'berhenti'])->middleware('auth:admin');
+// Route::get('/admin/posisimagang', [AdminPosisiCont::class, 'index'])->middleware('auth:admin');
+Route::get('/admin/posisimagang', [AdminPosisiCont::class, 'index'])->middleware('auth:admin');
 // Route::get('/dashboard/back', [PendaftarPerusahaanCont::class, 'back'])->middleware('auth:perusahaan');

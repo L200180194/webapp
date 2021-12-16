@@ -51,6 +51,12 @@
             </div>
             <div class="row mb-1">
                 <div class="col-4">
+                    <h6>No Telepon</h6>
+                </div>
+                <div class="col fs-6">{{ Auth::guard('admin')->user()->tlp_admin }}</div>
+            </div>
+            <div class="row mb-1">
+                <div class="col-4">
                     <h6>Password</h6>
                 </div>
                 <div class="col fs-6">

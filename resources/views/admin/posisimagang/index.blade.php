@@ -16,78 +16,66 @@
 {{-- <div class="rounded mx-auto d-block text-center mt-5 ">
     @if ( Auth::guard('admin')->user()->foto_perusahaan == null)
     <img src="{{url('/profil_perusahaan/perusahaan.jpg')}}" class="img-thumbnail mt-2 img-fluid" alt="..." width="250" height="250">
-@else
-<img src="{{asset('storage/' . Auth::guard('perusahaan')->user()->foto_perusahaan )}}" class="img-thumbnail mt-2 img-fluid" alt="..." width="250" height="250">
-@endif
-
+    @else
+    <img src="{{asset('storage/' . Auth::guard('perusahaan')->user()->foto_perusahaan )}}" class="img-thumbnail mt-2 img-fluid" alt="..." width="250" height="250">
+    @endif
+    
 </div> --}}
 
 <div class="container-md mt-5 ">
-    <div class="shadow p-3 mb-3 bg-body rounded">
-        <h4>DAFTAR ADMIN</h4>
+    <div class="card justify-content-center mb-3">
+        <div class="shadow p-3   bg-body rounded "><h5>POSISI MAGANG</h5></div>
     </div>
-    <div class="shadow p-3 mb-3 bg-body rounded mt-3">
-        <nav class="nav nav-pills nav-justified ">
-            <a class="nav-link "  href="/admin/admins">Aktif</a>
-            <a class="nav-link active" aria-current="page" href="/admin/admin/berhenti">Berhenti</a>
-        </nav>
-    </div>
-    <div class="shadow p-3 mb-5 bg-body rounded ">
-        @if ( Auth::guard('admin')->user()->level == 'superadmin')
-
-        
-        @endif
+    <div class="shadow p-3 mb-5 bg-body rounded mt-3">
         <div class="table-responsive">
             <table class="table align-middle">
-
+        
                 <th>
                     NO
                 </th>
                 <th>
-                    NAMA ADMIN
-                </th>
-                <th>
-                    NO TELEPON
-                </th>
-                <th>
-                    EMAIL
-                </th>
-                <th>
-                    ALAMAT
-                </th>
-                <th>
-                    LEVEL
+                    NAMA POSISI
                 </th>
                 {{-- <th>
-                    Kelengkapan
+                    FOTO
                 </th> --}}
-                @if (Auth::guard('admin')->user()->level=='superadmin')
-                <th >
+                {{-- <th>
+                    SURAT
+                </th> --}}
+                
+                <th>
+                    DEADLINE 
+                </th>
+                <th>
+                    PERUSAHAAN
+                </th>
+                <th class="col-2">
                     ACTION
                 </th>
-                @endif
+        
                 <tbody>
-                    @foreach ($admin as $item)
+                    @foreach ($posisi as $item)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
-                        <td>{{ $item->nama_admin }}</td>
+                        <td>{{ $item->nama_posisi }}</td>
                         {{-- <td> <img src="{{ asset('storage/' . $item->foto_perusahaan) }}" height="30" width="30" alt=""> </td> --}}
-                        <td>{{ $item->tlp_admin }}</td>
+                        <td>{{ $item->deadline_posisi }}</td>
+                        <td>{{ $item->nama_perusahaan }}</td>
+                        {{-- <td>
+                            @if ( $item->surat_perusahaan == null  )
+                            <span class="badge bg-warning text-dark">Belum Lengkap</span>
+                                
+                            @elseif ( $item->deskripsi_perusahaan = null )
+                            <span class="badge bg-warning text-dark">Belum Lengkap</span>
+                                
+                            @else
+                            <span class="badge bg-success ">Bisa Direview</span>
+                                
+                            @endif
+                        </td> --}}
                         <td>
-                            {{ $item->email }}
-                        </td>
-                        <td>
-
-                            {{ $item->alamat_admin }}
-                        </td>
-                        <td>
-
-                            {{ $item->level }}
-                        </td>
-                        @if (Auth::guard('admin')->user()->level=='superadmin')
-                        <td>
-                            {{-- <a href="" style="text-decoration:none" class="badge bg-info"><i class="bi bi-eye d-inline" style="font-size: 1.5rem"></i></a> --}}
-                            <a href="/admin/admins/{{ $item->id }}/edit" style="text-decoration:none" class="btn btn-primary badge bg-primary"><i class="bi bi-pencil-square d-inline" style="font-size: 1.5rem"></i></a>
+                            <a href="" style="text-decoration:none" class="badge bg-info"><i class="bi bi-eye d-inline" style="font-size: 1.5rem"></i></a>
+                            {{-- <a href="/dashboard/posisi/{{ $item->id }}/edit" style="text-decoration:none" class="badge bg-primary mt-2"><i class="bi bi-pencil-square d-inline" style="font-size: 1.5rem"></i></a> --}}
                             {{-- <form action="/dashboard/posisi/{{ $item->id }}" method="POST" class="d-inline">
                                 @method('delete')
                                 @csrf
@@ -95,7 +83,6 @@
                             </form> --}}
                             
                         </td>
-                        @endif
                     </tr>
                     @endforeach
                 </tbody>
@@ -103,6 +90,7 @@
         </div>
         {{-- {{ $proses }} --}}
     </div>
-    {{ $admin }}
+    {{ $posisi}}
+    
     {{-- <h4>{{ Auth::guard('admin')->user() }}</h4> --}}
     @endsection
