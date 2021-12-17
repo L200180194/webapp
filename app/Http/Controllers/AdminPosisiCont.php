@@ -20,4 +20,16 @@ class AdminPosisiCont extends Controller
             'posisi' => $posisi
         ]);
     }
+    public function show($id, $perusahanid)
+    {
+
+        $posisi = posisi_magang::find($id);
+        $perusahaan = perusahaan::find($perusahanid);
+
+        return view('admin.posisimagang.show', [
+
+            'posisi' => $posisi,
+            'perusahaan' => $perusahaan,
+        ]);
+    }
 }

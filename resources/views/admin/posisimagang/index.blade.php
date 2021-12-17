@@ -74,7 +74,7 @@
                             @endif
                         </td> --}}
                         <td>
-                            <a href="" style="text-decoration:none" class="badge bg-info"><i class="bi bi-eye d-inline" style="font-size: 1.5rem"></i></a>
+                            <a href="/admin/posisimagang/show{{ $item->id }}/{{ $item->perusahaan_id }}" style="text-decoration:none" class="badge bg-info"><i class="bi bi-eye d-inline" style="font-size: 1.5rem"></i></a>
                             {{-- <a href="/dashboard/posisi/{{ $item->id }}/edit" style="text-decoration:none" class="badge bg-primary mt-2"><i class="bi bi-pencil-square d-inline" style="font-size: 1.5rem"></i></a> --}}
                             {{-- <form action="/dashboard/posisi/{{ $item->id }}" method="POST" class="d-inline">
                                 @method('delete')
@@ -90,7 +90,7 @@
         </div>
         {{-- {{ $proses }} --}}
     </div>
-    {{ $posisi}}
+    {{-- {{ $posisi}} --}}
     
     {{-- <h4>{{ Auth::guard('admin')->user() }}</h4> --}}
     @endsection

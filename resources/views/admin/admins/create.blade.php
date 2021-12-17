@@ -17,7 +17,7 @@
             <div class="row justify-content-center">
                 
             </div>
-            <div class="shadow p-3 mb-3 bg-body rounded justify-content-center ">
+            <div class="shadow p-3 mb-3 bg-body rounded d-flex justify-content-center ">
                 <h4 class="justify-content-center">TAMBAH ADMIN</h4>
             </div>
             <div class="shadow p-3 mb-5 bg-body rounded ">

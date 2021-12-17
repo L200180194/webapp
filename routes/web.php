@@ -69,4 +69,5 @@ Route::resource('/admin/admins', AdminController::class)->middleware('auth:admin
 Route::get('/admin/admin/berhenti', [AdminController::class, 'berhenti'])->middleware('auth:admin');
 // Route::get('/admin/posisimagang', [AdminPosisiCont::class, 'index'])->middleware('auth:admin');
 Route::get('/admin/posisimagang', [AdminPosisiCont::class, 'index'])->middleware('auth:admin');
+Route::get('/admin/posisimagang/show{id}/{perusahaanid}', [AdminPosisiCont::class, 'show'])->middleware('auth:admin');
 // Route::get('/dashboard/back', [PendaftarPerusahaanCont::class, 'back'])->middleware('auth:perusahaan');

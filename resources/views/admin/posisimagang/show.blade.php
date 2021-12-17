@@ -21,60 +21,69 @@
     @endif
     
 </div> --}}
-
 <div class="container-md mt-5 ">
     <div class="card justify-content-center mb-3">
-        <div class="shadow p-3   bg-body rounded "><h5>PROFIL ADMIN</h5></div>
+        <div class="shadow p-3   bg-body rounded "><h5>Detail Posisi Magang {{ $posisi->nama_posisi }}</h5></div>
     </div>
     <div class="card mb-4 shadow p-3 mb-5  rounded"  >
         <div class="card-body">
-            {{-- <h5 class="card-title">Profil Peruahaan</h5> --}}
+            <div class="rounded mx-auto d-block text-center mt-5 ">
+                <img src="{{url($posisi->foto_posisi)}}" class="img-thumbnail mt-2 img-fluid" alt="..." width="250" height="250">
+            </div>
             <div class="row mb-1">
                 <div class="col-4">
-                    <h6>Nama </h6>
+                    <h6>Deadline </h6>
                 </div>
                 <div class="col fs-6">
-                    {{ Auth::guard('admin')->user()->nama_admin }}
+                    {{ $posisi->deadline_posisi }}
                 </div>
             </div>
             <div class="row mb-1">
                 <div class="col-4">
-                    <h6>Alamat </h6>
-                </div>
-                <div class="col fs-6">{{ Auth::guard('admin')->user()->alamat_admin }}</div>
-            </div>
-            <div class="row mb-1">
-                <div class="col-4">
-                    <h6>Email</h6>
-                </div>
-                <div class="col fs-6">{{ Auth::guard('admin')->user()->email }}</div>
-            </div>
-            <div class="row mb-1">
-                <div class="col-4">
-                    <h6>No Telepon</h6>
-                </div>
-                <div class="col fs-6">{{ Auth::guard('admin')->user()->tlp_admin }}</div>
-            </div>
-            <div class="row mb-1">
-                <div class="col-4">
-                    <h6>Password</h6>
+                    <h6>Persyaratan </h6>
                 </div>
                 <div class="col fs-6">
-                    ********
+                    {{ $posisi->persyaratan_posisi }}
                 </div>
             </div>
-            <div class="mt-3">
-                <a href="/admin/profiladmin/edit" class="btn btn-primary ">Edit</a>
-                <form action="/logoutadmin" method="POST" class="d-inline">
-                @csrf
-                <button class="btn btn-danger ">Log Out</button>
-                {{-- <a class="nav-link px-3" href="#">Sign out</a> --}}
-            </form>
+            <div class="row mb-1">
+                <div class="col-4">
+                    <h6>Keterangan </h6>
+                </div>
+                <div class="col fs-6">{{ $posisi->keterangan_posisi }}</div>
+            </div>
+            <div class="row mb-1">
+                <div class="col-4">
+                    <h6>Fasilitas</h6>
+                </div>
+                <div class="col fs-6">{{ $posisi->fasilitas_posisi }}</div>
+            </div>
+            <div class="row mb-1">
+                <div class="col-4">
+                    <h6>Deskripsi</h6>
+                </div>
+                <div class="col fs-6">{{ $posisi->deskripsi_posisi }}</div>
+            </div>
+            <div class="row mb-1">
+                <div class="col-4">
+                    <h6>Perusahaan</h6>
+                </div>
+                <div class="col fs-6">
+                    <a href="/admin/perusahaan/detail{{ $perusahaan->id }}" style="text-decoration:none">{{ $perusahaan->nama_perusahaan }}</a>
+                </div>
             </div>
         </div>
     </div>
-    
+    {{-- <div class="mb-5">
+        <a href="/admin/profiladmin/edit" class="btn btn-primary ">Edit</a>
+        <form action="/logoutadmin" method="POST" class="d-inline">
+        @csrf
+        <button class="btn btn-danger ">Log Out</button>
+        
+    </form>
+    </div> --}}
 </div>
+
     
     {{-- <h4>{{ Auth::guard('admin')->user() }}</h4> --}}
     @endsection

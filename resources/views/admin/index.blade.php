@@ -31,7 +31,7 @@
                         <div class="col-sm-9">
                             <div class="card-body">
                                 <h5 class="card-title">Posisi Magang</h5>
-                                <p class="card-text">Posisi Magang di  </p>
+                                <p class="card-text">Daftar Posisi Magang  </p>
                             </div>
                         </div>
                     </div>
@@ -57,7 +57,7 @@
                         <div class="col-sm-9">
                             <div class="card-body">
                                 <h5 class="card-title">Admin</h5>
-                                <p class="card-text">Pendaftar di  </p>
+                                <p class="card-text">Daftar Admin MyIntern </p>
                             </div>
                         </div>
                     </div>
@@ -84,7 +84,7 @@
                         <div class="col-sm-9">
                             <div class="card-body">
                                 <h5 class="card-title">Perusahaan</h5>
-                                <p class="card-text">Profil  </p>
+                                <p class="card-text">Perusahaan yang terdaftar oleh sistem  </p>
                             </div>
                         </div>
                     </div>
@@ -109,7 +109,7 @@
                         <div class="col-sm-9">
                             <div class="card-body">
                                 <h5 class="card-title">Profil</h5>
-                                <p class="card-text">Profil  </p>
+                                <p class="card-text">Profil Admin  </p>
                             </div>
                         </div>
                     </div>
@@ -126,5 +126,5 @@
         <button class="btn btn-danger mb-4">Log Out</button>
         {{-- <a class="nav-link px-3" href="#">Sign out</a> --}}
     </form>
-    <h4>{{ Auth::guard('admin')->user() }}</h4>
+    {{-- <h4>{{ Auth::guard('admin')->user() }}</h4> --}}
     @endsection
