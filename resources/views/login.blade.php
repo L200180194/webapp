@@ -1,6 +1,6 @@
 @extends('layouts.main')
 @section('body')
-<div class="row justify-content-center mt-5 ">
+<div class="row justify-content-center mt-5 mb-5 ">
     <div class="col-md-4">
         @if (session()->has('loginError'))
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -14,12 +14,11 @@
         </div>
         @endif
         <main class="form-signin">
-            <h1 class="text-center">MyIntern</h1>
+            <img src="{{url('/images/myintern.png')}}" class="d-flex mx-lg-auto img-fluid" alt="Bootstrap Themes" width="300" height="100" loading="lazy">
+            {{-- <h1 class="text-center">MyIntern</h1> --}}
             <h1 class="h3 mb-3 fw-normal mt-2 text-center">Please Login</h1>
             <form action="/login" method="post">
                 @csrf
-                {{-- <img class="mb-4" src="../assets/brand/bootstrap-logo.svg" alt="" width="72" height="57"> --}}
-        
                 <div class="form-floating mb-2">
                     <input type="email" name="email" class="form-control @error('email') is-invalid @enderror " id="email" placeholder="name@example.com" required value="{{ old('email') }}">
                     <label for="email">Email address</label>

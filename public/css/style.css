@@ -8,8 +8,10 @@
 /* .form-signin .checkbox {
   font-weight: 400;
 } */
+html,
 body {
-  background: #cfdcf0;
+  height: 100%;
+  min-height: 100%;
 }
 .form-signin .form-floating:focus-within {
   z-index: 2;
