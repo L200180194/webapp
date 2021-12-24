@@ -29,6 +29,15 @@ use App\Http\Controllers\DashboardPosisiController;
 Route::get('/', function () {
     return view('home');
 })->name('home')->middleware('guest');
+Route::get('/about', function () {
+    return view('about');
+})->middleware('guest');
+Route::get('/syarat-ketentuan', function () {
+    return view('syaratketentuan');
+})->middleware('guest');
+Route::get('/FQA', function () {
+    return view('freqans');
+})->middleware('guest');
 
 Route::get('/dashboard', function () {
     return view('perusahaan.dashboard.index');

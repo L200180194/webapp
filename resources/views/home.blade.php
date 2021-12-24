@@ -17,7 +17,7 @@
 </div> --}}
 
 
-<div class="container mt-5 ">
+<div class="container mt-3 ">
     <div class="row p-4 pb-0 pe-lg-0 pt-lg-5 align-items-center rounded-3 border shadow-lg">
         <div class="col-lg-4  ">
             <img src="{{url('/images/homeblue.svg')}}" class="d-flex mx-lg-auto img-fluid" alt="Bootstrap Themes" width="700" height="500" loading="lazy">
@@ -36,7 +36,7 @@
 <div class="container p-0">
     <div class="row mb-2 mt-4 p-0 ">
         <div class="col-md-4">
-            <a href="" style="text-decoration:none">
+            <a href="/about" style="text-decoration:none">
                 <div class="row g-0 p-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative rounded-3 border shadow-lg">
                     <h5 class="d-flex justify-content-center mt-3  text-dark">ABOUT US</h5>
                     <img src="{{url('/images/aboutus.svg')}}" class="d-flex mx-lg-auto img-fluid" alt="Bootstrap Themes" width="250" height="50" loading="lazy">
@@ -45,7 +45,7 @@
 
         </div>
         <div class="col-md-4">
-            <a href="" style="text-decoration:none">
+            <a href="/syarat-ketentuan" style="text-decoration:none">
                 <div class=" row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative rounded-3 border shadow-lg">
                     <h5 class="d-flex justify-content-center text-dark mt-3">SYARAT & KETENTUAN</h5>
                     <img src="{{url('/images/agreement.svg')}}" class="d-flex mx-lg-auto img-fluid" alt="Bootstrap Themes" width="300" height="100" loading="lazy">
@@ -53,7 +53,7 @@
             </a>
         </div>
         <div class="col-md-4">
-            <a href="" style="text-decoration:none">
+            <a href="/FQA" style="text-decoration:none">
                 <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative rounded-3 border shadow-lg">
                     <h5 class="d-flex justify-content-center mt-3 text-dark">FREQUENTLY QUESTION</h5>
                     <img src="{{url('/images/question.svg')}}" class="d-flex mx-lg-auto img-fluid" alt="Bootstrap Themes" width="300" height="100" loading="lazy">

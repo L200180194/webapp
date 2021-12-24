@@ -11,92 +11,96 @@
         </div>
     
 @endif
-
-<div class="row">
-    <div class="col">
-        <div class="rounded mx-auto d-block text-center  mb-3 ">
-            <img src="{{$daftar->foto_user}}" class="img-thumbnail mt-2 img-fluid" alt="..." width="250" height="250">
-        </div>
-        <div class="row mb-2">
-            <div class="col-4">
-                <h6>Nama</h6>
+<div class="container">
+    <div class="row  shadow-lg p-3 rounded bg-body">
+        <div class="col ">
+            <div class="rounded mx-auto d-block text-center  mb-3 ">
+                <img src="{{$daftar->foto_user}}" class="img-thumbnail mt-2 img-fluid" alt="..." width="250" height="250">
             </div>
-            <div class="col fs-6">{{$daftar->name}}</div>
-        </div>
-        <div class="row mb-2">
-            <div class="col-4">
-                <h6>Alamat</h6>
+            <div class="row mb-2">
+                <div class="col-4">
+                    <h6>Nama</h6>
+                </div>
+                <div class="col fs-6">{{$daftar->name}}</div>
             </div>
-            <div class="col fs-6">{{$daftar->alamat_user}}</div>
-        </div>
-        <div class="row mb-2">
-            <div class="col-4">
-                <h6>email</h6>
+            <div class="row mb-2">
+                <div class="col-4">
+                    <h6>Alamat</h6>
+                </div>
+                <div class="col fs-6">{{$daftar->alamat_user}}</div>
             </div>
-            <div class="col fs-6">{{$daftar->email}}</div>
-        </div>
-        <div class="row mb-2">
-            <div class="col-4">
-                <h6>No. Tlp</h6>
+            <div class="row mb-2">
+                <div class="col-4">
+                    <h6>email</h6>
+                </div>
+                <div class="col fs-6">{{$daftar->email}}</div>
             </div>
-            <div class="col fs-6">{{$daftar->notlp_user}}</div>
-        </div>
-        <div class="row mb-2">
-            <div class="col-4">
-                <h6>Kota</h6>
+            <div class="row mb-2">
+                <div class="col-4">
+                    <h6>No. Tlp</h6>
+                </div>
+                <div class="col fs-6">{{$daftar->notlp_user}}</div>
             </div>
-            <div class="col fs-6">{{$kota->nama_kota}}</div>
-        </div>
-        <div class="row mb-2">
-            <div class="col-4">
-                <h6>Pendidikan</h6>
+            <div class="row mb-2">
+                <div class="col-4">
+                    <h6>Kota</h6>
+                </div>
+                <div class="col fs-6">{{$kota->nama_kota}}</div>
             </div>
-            <div class="col fs-6">{{$pendidikan->tingkat_pendidikan}}</div>
-        </div>
-        <div class="row mb-2">
-            <div class="col-4">
-                <h6>Prodi</h6>
+            <div class="row mb-2">
+                <div class="col-4">
+                    <h6>Pendidikan</h6>
+                </div>
+                <div class="col fs-6">{{$pendidikan->tingkat_pendidikan}}</div>
             </div>
-            <div class="col fs-6">{{$prodi->nama_prodi}}</div>
-        </div>
-        <div class="row mb-2">
-            <div class="col-4">
-                <h6>Skill</h6>
+            <div class="row mb-2">
+                <div class="col-4">
+                    <h6>Prodi</h6>
+                </div>
+                <div class="col fs-6">{{$prodi->nama_prodi}}</div>
             </div>
-            <div class="col fs-6">{{$skill->nama_skill}}</div>
-        </div>
-        <div class="row mb-2">
-            <div class="col-4">
-                <h6>Status Daftar</h6>
+            <div class="row mb-2">
+                <div class="col-4">
+                    <h6>Skill</h6>
+                </div>
+                <div class="col fs-6">{{$skill->nama_skill}}</div>
             </div>
-            <div class="col fs-6">
-                @if ($pivot->status_daftar == 'Proses' )
-                <div class="col fs-6"><span class="badge bg-warning text-dark">Proses</span></div>
-                @elseif ($pivot->status_daftar == 'Diterima')
-                <div class="col fs-6"><span class="badge bg-success">Diterima</span></div>
-                @elseif ($pivot->status_daftar == 'Ditolak')
-                <div class="col fs-6"><span class="badge bg-danger">Ditolak</span></div>
-        
-                @endif
+            <div class="row mb-2">
+                <div class="col-4">
+                    <h6>Status Daftar</h6>
+                </div>
+                <div class="col fs-6">
+                    @if ($pivot->status_daftar == 'Proses' )
+                    <div class="col fs-6"><span class="badge bg-warning text-dark">Proses</span></div>
+                    @elseif ($pivot->status_daftar == 'Diterima')
+                    <div class="col fs-6"><span class="badge bg-success">Diterima</span></div>
+                    @elseif ($pivot->status_daftar == 'Ditolak')
+                    <div class="col fs-6"><span class="badge bg-danger">Ditolak</span></div>
+            
+                    @endif
+                </div>
             </div>
-        </div>
-        <div class="row mb-2">
-            <div class="col-4">
-                <h6>CV</h6>
+            <div class="row mb-2">
+                <div class="col-4">
+                    <h6>CV</h6>
+                </div>
+                <div class="col fs-6">{{$daftar->cv_user}}</div>
             </div>
-            <div class="col fs-6">{{$daftar->cv_user}}</div>
-        </div>
-        <div class="row mb-2">
-            <div class="col-4">
-                <h6>Tanggal daftar</h6>
+            <div class="row mb-2">
+                <div class="col-4">
+                    <h6>Tanggal daftar</h6>
+                </div>
+                <div class="col fs-6">{{$pivot->tgl_daftar}}</div>
             </div>
-            <div class="col fs-6">{{$pivot->tgl_daftar}}</div>
+            <button type="button" class="btn btn-primary mt-3 mb-2" data-bs-toggle="modal" data-bs-target="#ubahstatus">
+                Ubah Status
+            </button>
         </div>
-    </div>
-    <div class="col">
-        <div class="row mb-2">
-            <div class="col-8">
-                <embed  class="rounded" src="{{asset('storage/' . $daftar->cv_user )}}" type="application/pdf" width="600" height="600">
+        <div class="col">
+            <div class="row mb-2">
+                <div class="col-8">
+                    <embed  class="rounded" src="{{asset('storage/' . $daftar->cv_user )}}" type="application/pdf" width="600" height="600">
+                </div>
             </div>
         </div>
     </div>
@@ -104,11 +108,10 @@
 
 
 
+
 {{-- MODAL UBAH STATUS --}}
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary mt-3 mb-2" data-bs-toggle="modal" data-bs-target="#ubahstatus">
-    Ubah Status
-</button>
+
 
 <!-- Modal -->
 <div class="modal fade" id="ubahstatus" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

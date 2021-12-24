@@ -1,11 +1,10 @@
 @extends('perusahaan.dashboard.layoutsdashboard.main')
 @section('container')
-<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h1 class="h2">Pendaftar
-    </h1>
-</div>
+
+<div class="shadow-lg p-3 mt-3  bg-body rounded  mb-3"><h5>Pendaftar</h5></div>
 {{-- {{ $pendaftars }} --}}
 {{-- <h4>{{ Auth::guard('perusahaan')->user() }}</h4> --}}
+<div class="shadow-lg p-3 mt-3  bg-body rounded  mb-3">
 <div class="table-responsive">
     <table class="table  align-middle table-hover">
 
@@ -45,5 +44,6 @@
             @endforeach
         </tbody>
     </table>
+</div>
 </div>
 @endsection

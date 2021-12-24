@@ -14,7 +14,7 @@
     <title>MyIntern</title>
 </head>
 
-<body>
+<body class="d-flex flex-column h-100">
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary  mb-3">
         <div class="container-fluid">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,7 +28,13 @@
                 <a class="navbar-brand" href="#">MyIntern</a>
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/">Home</a>
+                        <a class="nav-link {{ Request::is('/')?'active':'' }}" aria-current="page" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ Request::is('about*')?'active':'' }}" aria-current="page" href="/about">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ Request::is('syarat-ketentuan*')?'active':'' }} " aria-current="page" href="/syarat-ketentuan">Syarat & Ketentuan</a>
                     </li>
                 </ul>
                 <form class="d-flex">
@@ -40,14 +46,33 @@
             </div>
         </div>
     </nav>
-    
+        <main class="flex-shrink-0">
         @yield('body')
-    <div class="row">&nbsp;</div>
-        <footer class="d-flex flex-wrap justify-content-between footer align-items-center py-3 mt-5 bg-dark text-white border-top sticky-lg-bottom">
+    </main>
+<footer class="footer mt-auto py-3 p-2 d-flex flex-wrap bg-dark text-white justify-content-between">
+    
+    <p class="col-md-4 mb-0 my-2 text-muted">&copy; 2021 MyIntern, Inc</p>
+        
+            <a href="/" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+                
+                <img src="{{url('/images/myintern.png')}}" class="bi me-2" width="40" height="32" alt="">
+            </a>
+        
+            <ul class="nav col-md-4 justify-content-end">
+                <li class="nav-item"><a href="/" class="nav-link px-2 text-muted">Home</a></li>
+                <li class="nav-item"><a href="/login" class="nav-link px-2 text-muted">Masuk</a></li>
+                <li class="nav-item"><a href="/registrasi" class="nav-link px-2 text-muted">Daftar</a></li>
+                <li class="nav-item"><a href="/FQA" class="nav-link px-2 text-muted">FAQs</a></li>
+                <li class="nav-item"><a href="/about" class="nav-link px-2 text-muted">About Us</a></li>
+            </ul>
+  </footer>
+        {{-- <div class="container mt-5 mb-5"><div class="row mt-5">&nbsp;</div><div class="row mt-5">&nbsp;</div></div> --}}
+    
+        {{-- <footer class="d-flex flex-wrap justify-content-between footer align-items-center py-3 mt-5 bg-dark text-white border-top sticky-lg-bottom">
             <p class="col-md-4 mb-0 text-muted">&copy; 2021 MyIntern, Inc</p>
         
             <a href="/" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
-                {{-- <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg> --}}
+                
                 <img src="{{url('/images/myintern.png')}}" class="bi me-2" width="40" height="32" alt="">
             </a>
         
@@ -58,7 +83,7 @@
                 <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">FAQs</a></li>
                 <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">About</a></li>
             </ul>
-        </footer>
+        </footer> --}}
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: Bootstrap Bundle with Popper -->

@@ -1,11 +1,13 @@
 @extends('perusahaan.dashboard.layoutsdashboard.main')
 @section('container')
-<div class="d-flex  flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+{{-- <div class="d-flex  flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
     <a href="/dashboard/pendaftar" class="badge bg-danger"><i class="bi bi-arrow-left-square " style="font-size: 1.5rem"></i></a><h1 class="h2 mx-2">Pendaftar
     </h1>
-</div>
+</div> --}}
+<div class="shadow-lg p-3 mt-3  bg-body rounded  mb-3 d-flex"><a href="/dashboard/pendaftar" class="badge bg-danger my-auto"><i class="bi bi-arrow-left-square " style="font-size: 1.5rem"></i></a><h3 class=" mx-2 ">Pendaftar
+</h3></div>
 
-<div class="container my-9 mb-5">
+<div class="shadow-lg rounded bg-body p-3 my-9 mb-5">
     <div class="row text-center mt-5">
         <h1>{{ $daftar->nama_posisi }}</h1>
     </div>
@@ -45,13 +47,15 @@
         </div>
     </div>
 </div>
-<div class="row-md mt-3 mb-3">
-    <h3>PENDAFTAR</h3>
-    
-</div>
 
 
-<div class="table-responsive mb-5">
+
+
+<div class="table-responsive shadow-lg rounded bg-body p-3 mb-5">
+    <div class="row-md mt-3 mb-3">
+        <h3>PENDAFTAR</h3>
+        
+    </div>
     <table class="table  align-middle table-hover">
 
         <th>

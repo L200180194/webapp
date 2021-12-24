@@ -1,9 +1,6 @@
 @extends('perusahaan.dashboard.layoutsdashboard.main')
 @section('container')
-<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h1 class="h2">Posisi Magang
-    </h1>
-</div>
+<div class="shadow-lg p-3 mt-3  bg-body rounded  mb-3"><h5>POSISI MAGANG</h5></div>
 @if (session()->has('success'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             {{ session('success') }}
@@ -11,8 +8,11 @@
         </div>
     
 @endif
+<div class="shadow-lg p-3   bg-body rounded  mb-3">
 @if (Auth::guard('perusahaan')->user()->status_perusahaan == 'proses' )
-<a href="" class="btn btn-primary disabled" >Tambah Posisi Magang</a>
+<span class="d-inline-block" tabindex="0" data-bs-toggle="tooltip" title="Akun Belum Terverifikasi ">
+    <button class="btn btn-primary" type="button" disabled>Tambah Posisi Magang</button>
+</span>
 @elseif (Auth::guard('perusahaan')->user()->status_perusahaan == 'verifikasi')
 <a href="/dashboard/posisi/create" class="btn btn-primary " >Tambah Posisi Magang</a>
 @elseif (Auth::guard('perusahaan')->user()->status_perusahaan == 'ditolak')
@@ -85,6 +85,7 @@
             @endforeach
         </tbody>
     </table>
+</div>
 </div>
 {{-- <h4>{{ Auth::guard('perusahaan')->user() }}</h4> --}}
 @endsection

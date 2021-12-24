@@ -12,22 +12,22 @@
 </div>
 
 @endif
-<div class="rounded mx-auto d-block text-center mt-5 ">
+<div class="rounded mx-auto d-block  text-center mt-5 ">
     @if ( Auth::guard('perusahaan')->user()->foto_perusahaan == null)
-    <img src="{{url('/profil_perusahaan/perusahaan.jpg')}}" class="img-thumbnail mt-2 img-fluid" alt="..." width="250" height="250">
+    <img src="{{url('/profil_perusahaan/perusahaan.jpg')}}" class="img-thumbnail mt-2 img-fluid shadow-lg" alt="..." width="250" height="250">
     @else
-    <img src="{{asset('storage/' . Auth::guard('perusahaan')->user()->foto_perusahaan )}}" class="img-thumbnail mt-2 img-fluid" alt="..." width="250" height="250">
+    <img src="{{asset('storage/' . Auth::guard('perusahaan')->user()->foto_perusahaan )}}" class="img-thumbnail shadow-lg mt-2 img-fluid" alt="..." width="250" height="250">
     @endif
     {{-- <img src="{{url('/profil_perusahaan/profil1.jpg')}}" class="img-thumbnail mt-2 img-fluid" alt="..." width="250" height="250"> --}}
 </div>
 <div class="container-md mt-5">
-    <div class="card mb-4 " style="background: #E6E6E7;">
+    <div class="card mb-4 shadow-lg rounded " >
         <div class="card-header">
             <div class="row">
                 <div class="col-8">
                     <h5>Profil</h5>
                 </div>
-                <div class="col-4"><button type="button" class="btn btn-outline-secondary position-absolute end-0 mx-3" data-bs-toggle="modal" data-bs-target="#edit">
+                <div class="col-4 mx-auto "><button type="button" class="btn btn-outline-secondary position-absolute end-0 mx-3" data-bs-toggle="modal" data-bs-target="#edit">
                         Edit
                     </button></div>
             </div>
@@ -85,7 +85,7 @@
 
     </div>
 
-    <div class="card mb-4" style="background: #E6E6E7;">
+    <div class="card mb-4 shadow-lg rounded" >
         <div class="card-header">
             <div class="row">
                 <div class="col-8">
@@ -115,7 +115,7 @@
         </div>
     </div>
 
-    <div class="card mb-4" style="background: #E6E6E7;">
+    <div class="card mb-4 shadow-lg rounded" >
         <div class="card-header">
             <h5>Status Perusahaan</h5>
         </div>

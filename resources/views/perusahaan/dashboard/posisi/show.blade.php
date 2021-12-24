@@ -1,6 +1,6 @@
 @extends('perusahaan.dashboard.layoutsdashboard.main')
 @section('container')
-<div class="card my-5 text-white" style="background-color: #50555D">
+<div class="card my-5 shadow-lg rounded" >
     <h5 class="card-header">{{ $posisi->nama_posisi }}</h5>
     <div class="card-body">
         <div class="row mb-4">
@@ -39,8 +39,18 @@
             <div class="col fs-6">{!! $posisi->deadline_posisi !!}</div>
         
         </div>
-      
+        <div class="row-md mt-3 mb-3">
+            <a href="/dashboard/posisi" class="btn text-white" style="background: #EBA41F">Back</a>
+            <a href="/dashboard/posisi/{{ $posisi->id }}/edit" class="btn btn-primary mx-2">Edit</a>
+            <form action="/dashboard/posisi" method="POST" class="d-inline">
+                @method('delete')
+                @csrf
+                <button class="btn btn-danger">Delete</button>
+            </form>
+            
+        </div>
     </div>
+    
   </div>
 {{-- <div class="container my-9 mb-5">
     <div class="row text-center mt-5">
@@ -81,16 +91,7 @@
             {{  $posisi->deadline_posisi  }}
         </div>
     </div> --}}
-    <div class="row-md mt-3 mb-5">
-        <a href="/dashboard/posisi" class="btn text-white" style="background: #EBA41F">Back</a>
-        <a href="/dashboard/posisi/{{ $posisi->id }}/edit" class="btn btn-primary mx-2">Edit</a>
-        <form action="/dashboard/posisi" method="POST" class="d-inline">
-            @method('delete')
-            @csrf
-            <button class="btn btn-danger">Delete</button>
-        </form>
-        
-    </div>
+    
 </div>
 
 

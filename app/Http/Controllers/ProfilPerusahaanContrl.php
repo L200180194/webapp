@@ -37,7 +37,7 @@ class ProfilPerusahaanContrl extends Controller
                 [
                     'nama_perusahaan' => 'required|max:100',
                     'alamat_perusahaan' => 'required|max:255',
-                    'notlp_perusahaan' => 'required|max:30',
+                    'notlp_perusahaan' => 'required|numeric',
                     'deskripsi_perusahaan' => 'required',
                     'foto_perusahaan' => 'mimes:jpg,png|file|max:1524',
                     'surat_perusahaan' => 'mimes:pdf|file|max:1524',

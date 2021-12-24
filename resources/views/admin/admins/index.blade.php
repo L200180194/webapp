@@ -24,7 +24,7 @@
 
 <div class="container-md mt-5 ">
     <div class="shadow p-3 mb-3 bg-body rounded">
-        <h4>DAFTAR ADMIN</h4>
+        <h5>DAFTAR ADMIN</h5>
     </div>
     <div class="shadow p-3 mb-3 bg-body rounded mt-3">
         <nav class="nav nav-pills nav-justified ">
