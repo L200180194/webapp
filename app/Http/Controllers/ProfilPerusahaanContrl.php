@@ -15,6 +15,14 @@ class ProfilPerusahaanContrl extends Controller
     {
         return view('perusahaan.dashboard.profil.index');
     }
+    public function editprofil()
+    {
+        return view('perusahaan.dashboard.profil.editprofil');
+    }
+    public function editpass()
+    {
+        return view('perusahaan.dashboard.profil.editpass');
+    }
 
     public function updateprofil(Request $request)
     {

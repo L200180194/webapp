@@ -12,6 +12,12 @@
 </div>
 
 @endif
+@error('foto_perusahaan' or 'surat_perusahaan' or 'nama_perusahaan' or 'alamat_perusahaan' or 'notlp_perusahaan' or 'deskripsi_perusahaan' or 'password'or 'passwordbaru' or 'passwordbaru_confirmation')
+<div class="alert alert-primary alert-dismissible fade show mt-3" role="alert">
+    {{ $message }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+@enderror
 <div class="rounded mx-auto d-block  text-center mt-5 ">
     @if ( Auth::guard('perusahaan')->user()->foto_perusahaan == null)
     <img src="{{url('/profil_perusahaan/perusahaan.jpg')}}" class="img-thumbnail mt-2 img-fluid shadow-lg" alt="..." width="250" height="250">
@@ -27,9 +33,12 @@
                 <div class="col-8">
                     <h5>Profil</h5>
                 </div>
-                <div class="col-4 mx-auto "><button type="button" class="btn btn-outline-secondary position-absolute end-0 mx-3" data-bs-toggle="modal" data-bs-target="#edit">
+                <div class="col-4 mx-auto ">
+                    {{-- <button type="button" class="btn btn-outline-secondary position-absolute end-0 mx-3" data-bs-toggle="modal" data-bs-target="#edit">
                         Edit
-                    </button></div>
+                    </button> --}}
+                    <a href="/dashboard/profil/edit-profil" class="btn btn-outline-secondary position-absolute end-0 mx-3">Edit</a>
+                </div>
             </div>
 
 
@@ -91,9 +100,12 @@
                 <div class="col-8">
                     <h5>Akun</h5>
                 </div>
-                <div class="col-4"><button type="button" class="btn btn-outline-secondary position-absolute end-0 mx-3" data-bs-toggle="modal" data-bs-target="#gantipassword">
+                <div class="col-4">
+                    {{-- <button type="button" class="btn btn-outline-secondary position-absolute end-0 mx-3" data-bs-toggle="modal" data-bs-target="#gantipassword">
                         Ganti Password
-                    </button></div>
+                    </button> --}}
+                    <a href="/dashboard/profil/ganti-password" class="btn btn-outline-secondary position-absolute end-0 mx-3">Ganti Password</a>
+                </div>
             </div>
 
         </div>
@@ -150,152 +162,6 @@
         </div>
     </div>
 
-
-    <!-- Modal Edit Profil -->
-    <div class="modal fade" id="edit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Edit Profil</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form action="/dashboard/profil" enctype="multipart/form-data" method="POST">
-                        @method('put')
-                        @csrf
-                        <div class="mb-3">
-                            <label for="foto_perusahaan" class="form-label">Foto Perusahaan</label>
-                            @if (Auth::guard('perusahaan')->user()->foto_perusahaan)
-                            <img src="{{ asset('storage/' . Auth::guard('perusahaan')->user()->foto_perusahaan ) }}" alt="" class="img-preview img-fluid mb-3 col-sm-5 d-block">
-                            @else
-                            <img alt="" class="img-preview img-fluid mb-3 col-sm-5">
-                            @endif
-                            <input class="form-control @error('foto_perusahaan') is-invalid @enderror" type="file" id="foto_perusahaan" name="foto_perusahaan" onchange="previewImage()">
-                            @error('foto_perusahaan')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                            @enderror
-                        </div>
-                        <div class="mb-3">
-                            <label for="surat_perusahaan" class="form-label">Surat Perusahaan</label>
-                            @if (Auth::guard('perusahaan')->user()->surat_perusahaan)
-                            <img src="{{ asset('storage/' . Auth::guard('perusahaan')->user()->surat_perusahaan ) }}" alt="" class="img-preview img-fluid mb-3 col-sm-5 d-block">
-                            <a href="">{{ asset('storage/' . Auth::guard('perusahaan')->user()->surat_perusahaan ) }}</a>
-                            @endif
-                            <input class="form-control @error('surat_perusahaan') is-invalid @enderror" type="file" id="surat_perusahaan" name="surat_perusahaan">
-                            @error('surat_perusahaan')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                            @enderror
-                        </div>
-                        <div class="mb-3 mx-1">
-                            <label for="nama_perusahaan" class="form-label">Nama</label>
-                            <input type="text" name="nama_perusahaan" class="form-control @error('nama_perusahaan') is-invalid @enderror" id="nama_perusahaan" placeholder="name@example.com" required value="{{ Auth::guard('perusahaan')->user()->nama_perusahaan }}">
-                            @error('nama_perusahaan')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                            @enderror
-                        </div>
-                        <div class="mb-3 mx-1">
-                            <label for="alamat_perusahaan" class="form-label">Alamat Perusahaan</label>
-                            <input type="text" name="alamat_perusahaan" class="form-control @error('alamat_perusahaan') is-invalid @enderror" id="alamat_perusahaan" placeholder="name@example.com" required value="{{ Auth::guard('perusahaan')->user()->alamat_perusahaan }}">
-                            @error('alamat_perusahaan')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                            @enderror
-                        </div>
-                        <div class="mb-3 mx-1">
-                            <label for="notlp_perusahaan" class="form-label">No Telepon</label>
-                            <input type="text" name="notlp_perusahaan" class="form-control @error('notlp_perusahaan') is-invalid @enderror" id="notlp_perusahaan" placeholder="name@example.com" required value="{{ Auth::guard('perusahaan')->user()->notlp_perusahaan }}">
-                            @error('notlp_perusahaan')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                            @enderror
-                        </div>
-                        <div class="mb-3 mx-1">
-                            <label for="deskripsi_perusahaan" class="form-label">Deskripsi </label>
-                            <input id="deskripsi_perusahaan" type="hidden" name="deskripsi_perusahaan" value="{{ old('deskripsi_perusahaan',Auth::guard('perusahaan')->user()->deskripsi_perusahaan) }}">
-                            <trix-editor input="deskripsi_perusahaan"></trix-editor>
-                            @error('deskripsi_perusahaan')
-                            <p class="text-danger">{{ $message }}</p>
-                            @enderror
-                        </div>
-
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Save changes</button>
-                        </div>
-                    </form>
-                </div>
-
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal Ganti Password -->
-    <div class="modal fade" id="gantipassword" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ganti Password</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form action="/dashboard/profil/update-password" method="POST">
-                        @csrf
-                        <div class="mb-3 mx-1">
-                            <fieldset disabled>
-                                <label for="email" class="form-label">Email</label>
-                                <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" id="email" placeholder="name@example.com" required value="{{ Auth::guard('perusahaan')->user()->email }}">
-                                @error('email')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                                @enderror
-                            </fieldset>
-                        </div>
-                        <div class="mb-3 mx-1">
-                            <label for="password" class="form-label @error('password') is-invalid @enderror">Masukkan Password Lama</label>
-                            <input type="password" class="form-control" id="password" name="password" placeholder="password" required>
-                            @error('password')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                            @enderror
-                        </div>
-                        <div class="mb-3 mx-1">
-                            <label for="passwordbaru" class="form-label @error('passwordbaru') is-invalid @enderror">Masukkan Password baru</label>
-                            <input type="password" class="form-control" id="passwordbaru" name="passwordbaru" placeholder="password baru" required>
-                            @error('passwordbaru')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                            @enderror
-                        </div>
-                        <div class="mb-3 mx-1">
-                            <label for="passwordbaru_confirmation" class="form-label @error('passwordbaru_confirmation') is-invalid @enderror">Masukkan Ulang Password baru</label>
-                            <input type="password" class="form-control" id="passwordbaru_confirmation" name="passwordbaru_confirmation" placeholder="password baru" required>
-                            @error('passwordbaru')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                            @enderror
-                        </div>
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Save changes</button>
-                </div>
-            </div>
-            </form>
-        </div>
-    </div>
     <form action="/logoutperusahaan" method="POST">
         @csrf
         <button class="btn btn-danger mb-4">Log Out</button>

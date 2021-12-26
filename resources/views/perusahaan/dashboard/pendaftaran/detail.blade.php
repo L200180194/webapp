@@ -1,9 +1,16 @@
 @extends('perusahaan.dashboard.layoutsdashboard.main')
 @section('container')
-<div class="d-flex  flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <a href="/dashboard/pendaftar/{{$pivot->posisi_magang_id}}" class="badge bg-danger"><i class="bi bi-arrow-left-square " style="font-size: 1.5rem"></i></a><h1 class="h2 mx-2">Detail Pendaftar || {{ $daftar->name }}
-    </h1>
+<div class="container">
+    <div class="row">
+<div class="  shadow-lg p-3 mt-3  bg-body rounded d-flex mb-3 ">
+    <a href="/dashboard/pendaftar/{{$pivot->posisi_magang_id}}" class="badge bg-danger">
+        <i class="bi bi-arrow-left-square " style="font-size: 1.7rem"></i></a>
+    <h3 class="mx-2">Detail Pendaftar || {{ $daftar->name }}
+    </h3>
 </div>
+</div>
+</div>
+
 @if (session()->has('success'))
         <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
             {{ session('success') }}
@@ -11,7 +18,7 @@
         </div>
     
 @endif
-<div class="container">
+<div class="container mb-5">
     <div class="row  shadow-lg p-3 rounded bg-body">
         <div class="col ">
             <div class="rounded mx-auto d-block text-center  mb-3 ">
