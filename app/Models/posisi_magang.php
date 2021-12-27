@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class posisi_magang extends Model
 {
@@ -18,5 +19,15 @@ class posisi_magang extends Model
     public function users()
     {
         return $this->belongsToMany(User::class, 'pendaftarans')->withPivot('tgl_daftar', 'tgl_perubahanstatus', 'keterangan_daftar', 'status_daftar', 'perusahaan_id', 'id');
+    }
+    public function scopeSearch($query, array $filter)
+    {
+        // if (isset($filter['search']) ? $filter['search'] : false) {
+        //     $query->where('nama_posisi', 'like', '%' . $filter['search'] . '%');
+        // }
+
+        $query->when($filter['search'] ?? false, function ($query, $search) {
+            return $query->where('nama_posisi', 'like', '%' . $search . '%');
+        });
     }
 }

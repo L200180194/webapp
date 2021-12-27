@@ -99,7 +99,10 @@
                 @endforeach
             </tbody>
         </table>
+        
+        
     </div>
+    <div class=" d-flex justify-content-center">{{ $posisis->links() }}</div>
 </div>
 {{-- <h4>{{ Auth::guard('perusahaan')->user() }}</h4> --}}
 @endsection

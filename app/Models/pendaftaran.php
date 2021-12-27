@@ -9,4 +9,11 @@ class pendaftaran extends Model
 {
     use HasFactory;
     protected $guarded = ["id"];
+
+    public function scopeSearch($query, array $filter)
+    {
+        $query->when($filter['search'] ?? false, function ($query, $search) {
+            return $query->where('users.name', 'like', '%' . $search . '%');
+        });
+    }
 }

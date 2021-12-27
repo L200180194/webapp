@@ -18,12 +18,10 @@ class PosisiMagangController extends Controller
     public function index()
     {
         // dd(request('search'));
-        $posisi = posisi_magang::where('perusahaan_id', Auth::guard('perusahaan')->user()->id);
-        if (request('search')) {
-            $posisi = posisi_magang::where('perusahaan_id', Auth::guard('perusahaan')->user()->id)->where('nama_posisi', 'like', '%' . request('search') . '%');
-        }
+
+
         return  view('perusahaan.dashboard.posisi.index', [
-            'posisis' => $posisi->get()
+            'posisis' => posisi_magang::where('perusahaan_id', Auth::guard('perusahaan')->user()->id)->search(request(['search']))->paginate(15)
         ]);
     }
 

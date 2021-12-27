@@ -5,8 +5,8 @@
 <div class="  shadow-lg p-3 mt-3  bg-body rounded d-flex mb-3 ">
     <a href="/dashboard/pendaftar/{{$pivot->posisi_magang_id}}" class="badge bg-danger">
         <i class="bi bi-arrow-left-square " style="font-size: 1.7rem"></i></a>
-    <h3 class="mx-2">Detail Pendaftar || {{ $daftar->name }}
-    </h3>
+    <h5 class="mx-2">DETAIL PENDAFTAR 
+    </h5>
 </div>
 </div>
 </div>

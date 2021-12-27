@@ -7,6 +7,7 @@ use App\Models\perusahaan;
 use App\Models\pendaftaran;
 use Illuminate\Http\Request;
 use App\Models\posisi_magang;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 
@@ -14,15 +15,12 @@ class PendaftarPerusahaanCont extends Controller
 {
     public function index()
     {
-        // $posisi_magang = posisi_magang::where('perusahaan_id', Auth::guard('perusahaan')->user()->id)->get();
 
-        // $posisis = posisi_magang::find(Auth::guard('perusahaan')->user()->id);
-        $posisi_magang = posisi_magang::where('perusahaan_id', Auth::guard('perusahaan')->user()->id)->with('users')->get();
-        // $posisi_magang = posisi_magang::has('peruahaan_id', Auth::guard('perusahaan')->user()->id);
-        // dd($posisi_magang);
-        // $posisi_magang = posisi_magang::where('perusahaan_id', Auth::guard('perusahaan')->user()->id)->get();
-        // $users = $posisi_magang['id']->users;
-        // dd($users);
+        $posisi_magang = posisi_magang::where('perusahaan_id', Auth::guard('perusahaan')->user()->id)->with('users')->search(request(['search']))->paginate(15);
+
+        // return  view('perusahaan.dashboard.posisi.index', [
+        //     'posisis' => posisi_magang::where('perusahaan_id', Auth::guard('perusahaan')->user()->id)->search(request(['search']))->paginate(15)
+        // ]);
         return view('perusahaan.dashboard.pendaftaran.index', [
             'pendaftars' => $posisi_magang
         ]);
@@ -30,11 +28,17 @@ class PendaftarPerusahaanCont extends Controller
 
     public function show($id)
     {
+        // $pendaftar = posisi_magang::find($id);
         $pendaftar = posisi_magang::find($id);
-        $users = $pendaftar->users;
-        // dd($pendaftar);
+        $pendaftar2 = pendaftaran::join('perusahaans', 'pendaftarans.perusahaan_id', '=', 'perusahaans.id')
+            ->join('users', 'pendaftarans.user_id', '=', 'users.id')->select('perusahaans.*', 'users.*', 'pendaftarans.*')->join('posisi_magangs', 'pendaftarans.posisi_magang_id', '=', 'posisi_magangs.id')->where('posisi_magangs.id', '=', $id)->search(request(['search']))->paginate(15);
+        // $posisi = posisi_magang::join('perusahaans', 'posisi_magangs.perusahaan_id', '=', 'perusahaans.id')->select('perusahaans.*', 'posisi_magangs.*')->get();
+
+        // dd($pendaftar, $pendaftar2, $posisi);
         return view('perusahaan.dashboard.pendaftaran.show', [
-            'daftar' => $pendaftar
+            'daftar' => $pendaftar,
+            'full' => $pendaftar2,
+            'id' => $id
 
         ]);
     }

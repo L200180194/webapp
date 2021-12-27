@@ -1,11 +1,19 @@
 @extends('perusahaan.dashboard.layoutsdashboard.main')
 @section('container')
 
-<div class="shadow-lg p-3 mt-3  bg-body rounded  mb-3"><h5>Pendaftar</h5></div>
+<div class="shadow-lg p-3 mt-3  bg-body rounded  mb-3"><h5>PENDAFTAR</h5></div>
 {{-- {{ $pendaftars }} --}}
 {{-- <h4>{{ Auth::guard('perusahaan')->user() }}</h4> --}}
 <div class="shadow-lg p-3 mt-3  bg-body rounded  mb-3">
 <div class="table-responsive">
+    <div class="col-6">
+        <form action="/dashboard/pendaftar">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Search" name="search" value="{{ request('search') }}">
+                <button class="btn btn-info text-white" type="submit" > Search</button>
+            </div>
+        </form>
+    </div>
     <table class="table  align-middle table-hover">
 
         <th>
@@ -45,5 +53,6 @@
         </tbody>
     </table>
 </div>
+<div class=" d-flex justify-content-center">{{ $pendaftars->links() }}</div>
 </div>
 @endsection
