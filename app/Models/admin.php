@@ -37,4 +37,10 @@ class admin extends Authenticatable
     {
         return $this->hasMany(perusahaan::class);
     }
+    public function scopeSearch($query, array $filter)
+    {
+        $query->when($filter['search'] ?? false, function ($query, $search) {
+            return $query->where('nama_admin', 'like', '%' . $search . '%');
+        });
+    }
 }

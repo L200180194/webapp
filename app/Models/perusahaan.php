@@ -50,4 +50,16 @@ class perusahaan extends Authenticatable
     {
         return $this->belongsTo(admin::class);
     }
+    public function scopeSearch($query, array $filter)
+    {
+        $query->when($filter['search'] ?? false, function ($query, $search) {
+            return $query->where('nama_perusahaan', 'like', '%' . $search . '%');
+        });
+    }
+    public function scopeSearchver($query, array $filter)
+    {
+        $query->when($filter['searchver'] ?? false, function ($query, $searchver) {
+            return $query->where('nama_perusahaan', 'like', '%' . $searchver . '%');
+        });
+    }
 }

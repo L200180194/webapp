@@ -15,7 +15,7 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $admin = admin::where('status', 'aktif')->get();
+        $admin = admin::where('status', 'aktif')->search(request(['search']))->paginate();
         // dd($admin);
         return view('admin.admins.index', [
             'admin' => $admin
@@ -114,7 +114,7 @@ class AdminController extends Controller
     }
     public function berhenti()
     {
-        $admin = admin::where('status', 'berhenti')->get();
+        $admin = admin::where('status', 'berhenti')->search(request(['search']))->paginate(15);
         // dd($admin);
         return view('admin.admins.berhenti', [
             'admin' => $admin

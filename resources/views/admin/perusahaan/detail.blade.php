@@ -121,7 +121,7 @@
         </form> --}}
     </div>
 </div>
-    {{ $perusahaan->admin }}
+    {{-- {{ $perusahaan->admin }} --}}
 </div>
 
 

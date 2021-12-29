@@ -33,11 +33,15 @@
         </nav>
     </div>
     <div class="shadow p-3 mb-5 bg-body rounded ">
-        @if ( Auth::guard('admin')->user()->level == 'superadmin')
-
-        
-        @endif
         <div class="table-responsive">
+            <div class="col-6">
+                <form action="/admin/admin/berhenti">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="Search" name="search" value="{{ request('search') }}">
+                        <button class="btn btn-info text-white" type="submit" > Search</button>
+                    </div>
+                </form>
+            </div>
             <table class="table align-middle">
 
                 <th>

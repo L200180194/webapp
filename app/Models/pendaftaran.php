@@ -16,4 +16,8 @@ class pendaftaran extends Model
             return $query->where('users.name', 'like', '%' . $search . '%');
         });
     }
+    public function users()
+    {
+        return $this->belongsTo(user::class);
+    }
 }

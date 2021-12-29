@@ -31,6 +31,14 @@
     <div class="row">
         <div class="col">
             <div class="table-responsive">
+                <div class="col">
+                    <form action="/admin/perusahaan">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="Search" name="search" value="{{ request('search') }}">
+                            <button class="btn btn-info text-white" type="submit" > Search</button>
+                        </div>
+                    </form>
+                </div>
                 <table class="table align-middle">
             
                     <th>
@@ -90,9 +98,18 @@
                     </tbody>
                 </table>
             </div>
+            <div class=" d-flex justify-content-center mt-1">{{ $prosesver->links() }}</div>
         </div>
         <div class="col">
             <div class="table-responsive">
+                <div class="col">
+                    <form action="/admin/perusahaan">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="Search" name="searchver" value="{{ request('searchver') }}">
+                            <button class="btn btn-info text-white" type="submit" > Search</button>
+                        </div>
+                    </form>
+                </div>
                 <table class="table align-middle">
             
                     <th>
@@ -151,6 +168,7 @@
                         @endforeach
                     </tbody>
                 </table>
+                <div class=" d-flex justify-content-center mt-1">{{ $proses->links() }}</div>
             </div>
         </div>
     </div>

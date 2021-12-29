@@ -11,10 +11,10 @@ class PerusahaanAdminCont extends Controller
 {
     public function index()
     {
-        $proses = perusahaan::where('status_perusahaan', 'proses')->whereNull('surat_perusahaan')->get();
-        $prosesver = perusahaan::where('status_perusahaan', 'proses')->whereNotNull('surat_perusahaan')->get();
+        $proses = perusahaan::where('status_perusahaan', 'proses')->whereNull('surat_perusahaan')->searchver(request(['searchver']))->paginate(15);
+        $prosesver = perusahaan::where('status_perusahaan', 'proses')->whereNotNull('surat_perusahaan')->search(request(['search']))->paginate(15);
         // $proses = perusahaan::all();
-        // dd($proses);
+        // dd($prosesver);
         // 'posisis' => posisi_magang::where('perusahaan_id', Auth::guard('perusahaan')->user()->id)->get()
         return view('admin.perusahaan.index', [
             'proses' => $proses,
@@ -23,7 +23,7 @@ class PerusahaanAdminCont extends Controller
     }
     public function diterima()
     {
-        $proses = perusahaan::where('status_perusahaan', 'verifikasi')->get();
+        $proses = perusahaan::where('status_perusahaan', 'verifikasi')->search(request(['search']))->paginate(15);
         // $proses = perusahaan::all();
         // dd($proses);
         // 'posisis' => posisi_magang::where('perusahaan_id', Auth::guard('perusahaan')->user()->id)->get()
@@ -33,7 +33,7 @@ class PerusahaanAdminCont extends Controller
     }
     public function ditolak()
     {
-        $proses = perusahaan::where('status_perusahaan', 'ditolak')->get();
+        $proses = perusahaan::where('status_perusahaan', 'ditolak')->search(request(['search']))->paginate(15);
         // $proses = perusahaan::all();
         // dd($proses);
         // 'posisis' => posisi_magang::where('perusahaan_id', Auth::guard('perusahaan')->user()->id)->get()

@@ -23,10 +23,18 @@
 </div> --}}
 
 <div class="container-md mt-5 ">
-    <div class="card justify-content-center mb-3">
+    <div class=" justify-content-center mb-3">
         <div class="shadow p-3   bg-body rounded "><h5>POSISI MAGANG</h5></div>
     </div>
     <div class="shadow p-3 mb-5 bg-body rounded mt-3">
+        <div class="col-6 my-3">
+            <form action="/admin/posisimagang">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Search" name="search" value="{{ request('search') }}">
+                    <button class="btn btn-info text-white" type="submit" > Search</button>
+                </div>
+            </form>
+        </div>
         <div class="table-responsive">
             <table class="table align-middle">
         
@@ -88,6 +96,7 @@
                 </tbody>
             </table>
         </div>
+        <div class=" d-flex justify-content-center">{{ $posisi->links() }}</div>
         {{-- {{ $proses }} --}}
     </div>
     {{-- {{ $posisi}} --}}

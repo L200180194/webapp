@@ -30,14 +30,16 @@ class PendaftarPerusahaanCont extends Controller
     {
         // $pendaftar = posisi_magang::find($id);
         $pendaftar = posisi_magang::find($id);
+
         $pendaftar2 = pendaftaran::join('perusahaans', 'pendaftarans.perusahaan_id', '=', 'perusahaans.id')
             ->join('users', 'pendaftarans.user_id', '=', 'users.id')->select('perusahaans.*', 'users.*', 'pendaftarans.*')->join('posisi_magangs', 'pendaftarans.posisi_magang_id', '=', 'posisi_magangs.id')->where('posisi_magangs.id', '=', $id)->search(request(['search']))->paginate(15);
         // $posisi = posisi_magang::join('perusahaans', 'posisi_magangs.perusahaan_id', '=', 'perusahaans.id')->select('perusahaans.*', 'posisi_magangs.*')->get();
 
-        // dd($pendaftar, $pendaftar2, $posisi);
+        // dd($dft);
         return view('perusahaan.dashboard.pendaftaran.show', [
             'daftar' => $pendaftar,
             'full' => $pendaftar2,
+
             'id' => $id
 
         ]);

@@ -13,7 +13,7 @@ class AdminPosisiCont extends Controller
         // return 'Haiiii';
         // $admin = posisi_magang::where('id', 1)->get();
         // $admin = perusahaan::join('posisi_magangs', 'perusahaans.id', '=', 'posisi_magangs.perusahaan_id')->select('perusahaans.*', 'posisi_magangs.*')->get();
-        $posisi = posisi_magang::join('perusahaans', 'posisi_magangs.perusahaan_id', '=', 'perusahaans.id')->select('perusahaans.*', 'posisi_magangs.*')->get();
+        $posisi = posisi_magang::join('perusahaans', 'posisi_magangs.perusahaan_id', '=', 'perusahaans.id')->select('perusahaans.*', 'posisi_magangs.*')->searchadmin(request(['search']))->paginate(15);
         // dd($admin);
         return view('admin.posisimagang.index', [
             // 'posisi' => posisi_magang::all()

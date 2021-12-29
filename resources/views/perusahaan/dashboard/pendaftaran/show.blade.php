@@ -11,15 +11,16 @@
 {{-- @foreach ($full as $item)
     {{ $item }} ||||
 @endforeach --}}
-{{-- {{ $full }} --}}
 <div class="table-responsive shadow-lg rounded bg-body p-3 mb-5">
     <div class="row mb-3 mt-3">
-        <div class="col"><form action="/dashboard/pendaftar/{{ $id }}">
-            <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Search" name="search" value="{{ request('search') }}">
-                <button class="btn btn-info text-white" type="submit" > Search</button>
-            </div>
-        </form></div>
+        <div class="col">
+            <form action="/dashboard/pendaftar/{{ $id }}">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Search" name="search" value="{{ request('search') }}">
+                    <button class="btn btn-info text-white" type="submit" > Search</button>
+                </div>
+            </form>
+        </div>
         <div class="col"><button class="btn btn-primary " type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Detail Posisi</button></div>
     </div>
     {{-- <table class="table  align-middle table-hover">

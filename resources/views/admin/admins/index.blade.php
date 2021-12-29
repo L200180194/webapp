@@ -33,11 +33,23 @@
         </nav>
     </div>
     <div class="shadow p-3 mb-5 bg-body rounded ">
-        @if ( Auth::guard('admin')->user()->level == 'superadmin')
-            
-        <a href="/admin/admins/create" class="btn btn-primary mb-2">Tambah Admin</a>
-        @endif
+        
         <div class="table-responsive">
+            <div class="row mb-3 mt-3">
+                <div class="col">
+                    <form action="/admin/admins">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="Search" name="search" value="{{ request('search') }}">
+                            <button class="btn btn-info text-white" type="submit" > Search</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="col">
+                    @if ( Auth::guard('admin')->user()->level == 'superadmin')
+                    <a href="/admin/admins/create" class="btn btn-primary mb-2">Tambah Admin</a>
+                    @endif
+                </div>
+            </div>
             <table class="table align-middle">
         
                 <th>
@@ -102,8 +114,9 @@
                 </tbody>
             </table>
         </div>
+        <div class=" d-flex justify-content-center mt-1">{{ $admin->links() }}</div>
         {{-- {{ $proses }} --}}
     </div>
-    {{ $admin }}
+    {{-- {{ $admin }} --}}
     {{-- <h4>{{ Auth::guard('admin')->user() }}</h4> --}}
     @endsection

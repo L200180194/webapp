@@ -30,4 +30,14 @@ class posisi_magang extends Model
             return $query->where('nama_posisi', 'like', '%' . $search . '%');
         });
     }
+    public function scopeSearchadmin($query, array $filter)
+    {
+        // if (isset($filter['search']) ? $filter['search'] : false) {
+        //     $query->where('nama_posisi', 'like', '%' . $filter['search'] . '%');
+        // }
+
+        $query->when($filter['search'] ?? false, function ($query, $search) {
+            return $query->where('nama_posisi', 'like', '%' . $search . '%')->orWhere('nama_perusahaan', 'like', '%' . $search . '%');
+        });
+    }
 }
