@@ -11,8 +11,9 @@ class PosisiMagangCont extends Controller
 {
     public function data()
     {
+        $posisi = posisi_magang::with(['perusahaan']);
         return ResponseFormatter::success(
-            posisi_magang::all(),
+            $posisi->paginate(20),
             'Data Berhasil Diambil'
         );
         // return posisi_magang::all();
