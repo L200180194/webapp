@@ -20,4 +20,12 @@ class pendaftaran extends Model
     {
         return $this->belongsTo(user::class);
     }
+    public function perusahaan()
+    {
+        return $this->belongsTo(perusahaan::class);
+    }
+    public function posisi_magangs()
+    {
+        return $this->belongsTo(posisi_magang::class);
+    }
 }

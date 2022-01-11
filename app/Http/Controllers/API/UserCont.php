@@ -17,52 +17,6 @@ class UserCont extends Controller
 {
     public function register(Request $request)
     {
-
-        // $validatedData = $request->validate(
-        //     [
-        //         // 'email' => 'required|email:dns|unique:perusahaans',
-        //         'email' => 'required|unique:perusahaans',
-        //         'password' => 'required|min:8',
-        //         'nama_perusahaan' => 'required|unique:perusahaans',
-        //         'notlp_perusahaan' => 'required',
-        //         'alamat_perusahaan' => 'required',
-        //     ]
-
-        // );
-        // $validatedData['password'] = bcrypt($validatedData['password']);
-        // perusahaan::create($validatedData);
-        // // dd($validatedData);
-        // $request->session()->flash('Success', 'Registration was successful! please login');
-
-        // $request->validate([
-        //     'name' => 'required|string|max:255',
-        //     'notlp_user' => 'required|max:255',
-        //     'alamat_user' => 'required|string|max:255',
-        //     'email' => 'required|email|unique:users|max:255',
-        //     'password' => 'required|min:8',
-        // ]);
-
-        // User::create([
-        //     'name' => $request->name,
-        //     'notlp_user' => $request->notlp_user,
-        //     'alamat_user' => $request->alamat_user,
-        //     'email' => $request->email,
-        //     'password' => Hash::make($request->password),
-        // ]);
-        // $user = User::where('email', $request->email)->first();
-
-        // $tokenResult = $user->createToken('authToken')->plainTextToken;
-        // return ResponseFormatter::success(
-        //     [
-        //         'access_token' =>  $tokenResult,
-        //         // 'id' => $id,
-        //         'token_type' => 'Bearer',
-        //         'user' => $user,
-
-        //     ],
-        //     'Berhasil Terdaftar'
-        // );
-
         try {
             $request->validate([
                 'name' => 'required|string|max:255',
@@ -71,7 +25,6 @@ class UserCont extends Controller
                 'email' => 'required|email|unique:users|max:255',
                 'password' => 'required|min:8',
             ]);
-            // $validateddata['password'] = bcrypt($validateddata['password']);
             User::create([
                 'name' => $request->name,
                 'notlp_user' => $request->notlp_user,
@@ -137,7 +90,6 @@ class UserCont extends Controller
     }
     public function updateprofile(Request $request)
     {
-        // return ResponseFormatter::success(Auth::user()->name, 'Data Profile User Berhasil Diambil');
         try {
             if (Auth::user()->cv_user == null and Auth::user()->kota_id and Auth::user()->pendidikan_id and Auth::user()->prodi_id and Auth::user()->skill_id) {
                 $validatedData = $request->validate([
@@ -175,11 +127,6 @@ class UserCont extends Controller
                 'Gagal'
             );
         }
-        // $data = $request->all();
-        // $user = Auth::user();
-        // $user->update($data);
-
-        // return ResponseFormatter::success($user, 'Profile Updated');
     }
     public function updatefoto(Request $request)
     {
@@ -221,10 +168,10 @@ class UserCont extends Controller
             ]
         );
         $hashedpass = Auth::user()->password;
-        // dd(Hash::check($request->password, $hashedpass));
+
         if (Hash::check($request->password, $hashedpass)) {
             if (Hash::check($request->passwordbaru, $hashedpass) == FALSE) {
-                // pendaftaran::where('id', $id)->update(['status_daftar' => $status]);
+
                 $newhashedpass = bcrypt($request->passwordbaru);
                 User::where('id', Auth::user()->id)->update(['password' => $newhashedpass]);
                 return ResponseFormatter::success(
@@ -234,8 +181,6 @@ class UserCont extends Controller
                     ],
                     'Berhasil'
                 );
-                // session()->flash('success', 'password updated successfully');
-                // return redirect()->back();
             } else {
                 return ResponseFormatter::error(
                     [
@@ -244,8 +189,6 @@ class UserCont extends Controller
                     ],
                     'Gagal'
                 );
-                // session()->flash('message', 'new password can not be the old password!');
-                // return redirect()->back();
             }
         } else {
             return ResponseFormatter::error(
@@ -255,8 +198,6 @@ class UserCont extends Controller
                 ],
                 'Gagal'
             );
-            // session()->flash('message', 'old password doesnt matched');
-            // return redirect()->back();
         }
     }
     public function logout(Request $request)
