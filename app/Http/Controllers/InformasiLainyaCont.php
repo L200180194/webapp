@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\pendidikan;
 use Illuminate\Http\Request;
 
-class PendidikanController extends Controller
+class InformasiLainyaCont extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +13,7 @@ class PendidikanController extends Controller
      */
     public function index()
     {
-        $pendidikan = pendidikan::all();
-        return view('admin.informasilainya.pendidikan.pendidikan', ['pendidikan' => $pendidikan]);
+        return view('admin.informasilainya.index');
     }
 
     /**
@@ -42,10 +40,10 @@ class PendidikanController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\pendidikan  $pendidikan
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(pendidikan $pendidikan)
+    public function show($id)
     {
         //
     }
@@ -53,10 +51,10 @@ class PendidikanController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\pendidikan  $pendidikan
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(pendidikan $pendidikan)
+    public function edit($id)
     {
         //
     }
@@ -65,10 +63,10 @@ class PendidikanController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\pendidikan  $pendidikan
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, pendidikan $pendidikan)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -76,10 +74,10 @@ class PendidikanController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\pendidikan  $pendidikan
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(pendidikan $pendidikan)
+    public function destroy($id)
     {
         //
     }

@@ -13,6 +13,8 @@ use App\Http\Controllers\RegistrasiController;
 use App\Http\Controllers\PosisiMagangController;
 use App\Http\Controllers\ProfilPerusahaanContrl;
 use App\Http\Controllers\PendaftarPerusahaanCont;
+use App\Http\Controllers\InformasiLainyaCont;
+use App\Http\Controllers\PendidikanController;
 use App\Http\Controllers\DashboardPosisiController;
 
 /*
@@ -80,5 +82,7 @@ Route::resource('/admin/admins', AdminController::class)->middleware('auth:admin
 Route::get('/admin/admin/berhenti', [AdminController::class, 'berhenti'])->middleware('auth:admin');
 // Route::get('/admin/posisimagang', [AdminPosisiCont::class, 'index'])->middleware('auth:admin');
 Route::get('/admin/posisimagang', [AdminPosisiCont::class, 'index'])->middleware('auth:admin');
+Route::get('/admin/informasilainya', [InformasiLainyaCont::class, 'index'])->middleware('auth:admin');
+Route::get('/admin/informasilainya/pendidikan', [PendidikanController::class, 'index'])->middleware('auth:admin');
 Route::get('/admin/posisimagang/show{id}/{perusahaanid}', [AdminPosisiCont::class, 'show'])->middleware('auth:admin');
 // Route::get('/dashboard/back', [PendaftarPerusahaanCont::class, 'back'])->middleware('auth:perusahaan');

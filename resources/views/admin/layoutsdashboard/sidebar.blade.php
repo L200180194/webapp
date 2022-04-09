@@ -27,6 +27,12 @@
                 </a>
             </li>
             <li class="nav-item">
+                <a class="nav-link {{ Request::is('admin/informasilainya*')?'active':'' }} " aria-current="page" href="/admin/informasilainya">
+                    <i class="bi bi-info-lg " style="font-size: 1.3rem; "></i>
+                    Informasi Lainya
+                </a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link {{ Request::is('admin/profiladmin*')?'active':'' }}  " aria-current="page" href="/admin/profiladmin">
                     <i class="bi bi-file-earmark-person " style="font-size: 1.3rem; "></i>
                     Profil

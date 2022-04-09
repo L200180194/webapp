@@ -22,8 +22,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 Route::Post('/register', [UserCont::class, 'register']);
 Route::Post('/login', [UserCont::class, 'login']);
+Route::get('/posisimagang/api', [PosisiMagangCont::class, 'all']);
 Route::middleware('auth:sanctum')->group(function () {
-    Route::get('/posisimagang/api', [PosisiMagangCont::class, 'all']);
     Route::get('/userlogin', [UserCont::class, 'fetch']);
     Route::post('/userupdate', [UserCont::class, 'updateprofile']);
     Route::post('/userupdatefoto', [UserCont::class, 'updatefoto']);
