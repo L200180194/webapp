@@ -84,5 +84,8 @@ Route::get('/admin/admin/berhenti', [AdminController::class, 'berhenti'])->middl
 Route::get('/admin/posisimagang', [AdminPosisiCont::class, 'index'])->middleware('auth:admin');
 Route::get('/admin/informasilainya', [InformasiLainyaCont::class, 'index'])->middleware('auth:admin');
 Route::get('/admin/informasilainya/pendidikan', [PendidikanController::class, 'index'])->middleware('auth:admin');
+Route::get('/admin/informasilainya/pendidikan/create', [PendidikanController::class, 'create'])->middleware('auth:admin');
+Route::post('/admin/informasilainya/pendidikan/store', [PendidikanController::class, 'store'])->middleware('auth:admin');
+Route::resource('/admin/informasilainya/pendidikan', PendidikanController::class)->middleware('auth:admin');
 Route::get('/admin/posisimagang/show{id}/{perusahaanid}', [AdminPosisiCont::class, 'show'])->middleware('auth:admin');
 // Route::get('/dashboard/back', [PendaftarPerusahaanCont::class, 'back'])->middleware('auth:perusahaan');

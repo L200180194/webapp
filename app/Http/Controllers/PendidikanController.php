@@ -25,7 +25,7 @@ class PendidikanController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.informasilainya.pendidikan.create');
     }
 
     /**
@@ -36,7 +36,15 @@ class PendidikanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate(
+            [
+
+                'tingkat_pendidikan' => 'required|unique:pendidikans',
+
+            ]
+        );
+        pendidikan::create($validatedData);
+        return Redirect('/admin/informasilainya/pendidikan')->with('success', 'Jenjang pendidikan berhasil ditambahkan');
     }
 
     /**
@@ -58,7 +66,9 @@ class PendidikanController extends Controller
      */
     public function edit(pendidikan $pendidikan)
     {
-        //
+        return view('admin.informasilainya.pendidikan.edit', [
+            'pendidikan' => $pendidikan
+        ]);
     }
 
     /**
@@ -70,7 +80,16 @@ class PendidikanController extends Controller
      */
     public function update(Request $request, pendidikan $pendidikan)
     {
-        //
+        pendidikan::where('id', $pendidikan->id)->update([
+            'tingkat_pendidikan' => $request->validate(
+                [
+
+                    'tingkat_pendidikan' => 'required|unique:pendidikans',
+
+                ]
+            ),
+        ]);
+        return Redirect('/admin/informasilainya/pendidikan')->with('success', 'Jenjang pendidikan berhasil Diubah');
     }
 
     /**
@@ -81,6 +100,7 @@ class PendidikanController extends Controller
      */
     public function destroy(pendidikan $pendidikan)
     {
-        //
+        $pendidikan->delete();
+        return Redirect('/admin/informasilainya/pendidikan')->with('success', 'Berhasil Dihapus');
     }
 }
