@@ -14,7 +14,8 @@ class ProdiController extends Controller
      */
     public function index()
     {
-        //
+        $prodi = prodi::all();
+        return view('admin.informasilainya.prodi.index', ['prodi' => $prodi]);
     }
 
     /**
@@ -24,7 +25,7 @@ class ProdiController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.informasilainya.prodi.create');
     }
 
     /**
@@ -35,7 +36,15 @@ class ProdiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate(
+            [
+
+                'nama_prodi' => 'required|unique:prodis',
+
+            ]
+        );
+        prodi::create($validatedData);
+        return Redirect('/admin/informasilainya/prodi')->with('success', 'Jenjang pendidikan berhasil ditambahkan');
     }
 
     /**
@@ -57,7 +66,9 @@ class ProdiController extends Controller
      */
     public function edit(prodi $prodi)
     {
-        //
+        return view('admin.informasilainya.prodi.edit', [
+            'prodi' => $prodi
+        ]);
     }
 
     /**
@@ -69,7 +80,12 @@ class ProdiController extends Controller
      */
     public function update(Request $request, prodi $prodi)
     {
-        //
+        $validatedData = $request->validate(['nama_prodi' => 'required|unique:prodis']);
+
+        prodi::where('id', $prodi->id)->update([
+            'nama_prodi' => $validatedData['nama_prodi']
+        ]);
+        return Redirect('/admin/informasilainya/prodi')->with('success', 'Jenjang pendidikan berhasil Diubah');
     }
 
     /**
@@ -80,6 +96,7 @@ class ProdiController extends Controller
      */
     public function destroy(prodi $prodi)
     {
-        //
+        $prodi->delete();
+        return Redirect('/admin/informasilainya/prodi')->with('success', 'Berhasil Dihapus');
     }
 }

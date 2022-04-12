@@ -30,7 +30,7 @@
         </div>
 
         <div class="col">
-            <a href="/admin/admins" style="text-decoration:none">
+            <a href="/admin/informasilainya/prodi" style="text-decoration:none">
                 <div class="card card-cover h-20 overflow-hidden text-white bg-danger rounded-5 shadow-lg" style="min-height: 10rem;">
                     <div class="d-flex flex-column h-100 p-2 pb-3 text-white text-shadow-1">
                         {{-- <h5 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Short title, long jacket</h5> --}}
@@ -58,7 +58,7 @@
 
 
         <div class="col">
-            <a href="/admin/perusahaan" style="text-decoration:none">
+            <a href="/admin/informasilainya/skill" style="text-decoration:none">
                 <div class="card card-cover h-20 overflow-hidden text-white bg-dark rounded-5 shadow-lg" style="min-height: 10rem;">
                     <div class="d-flex flex-column h-100 p-2 pb-3 text-white text-shadow-1">
                         {{-- <h5 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Short title, long jacket</h5> --}}

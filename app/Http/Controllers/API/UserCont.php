@@ -67,7 +67,7 @@ class UserCont extends Controller
                     'message' => 'Gagal'
                 ], 'Login Gagal', 500);
             }
-            $user = User::where('email', $request->email)->first();
+            $user = User::where('email', $request->email)->with('pendidikan', 'skill', 'prodi', 'kota')->first();
             if (!Hash::check($request->password, $user->password, [])) {
                 throw new \Exception('Invalid Credentials');
             }

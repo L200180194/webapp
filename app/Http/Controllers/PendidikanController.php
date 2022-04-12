@@ -80,14 +80,15 @@ class PendidikanController extends Controller
      */
     public function update(Request $request, pendidikan $pendidikan)
     {
+        $validatedData = $request->validate(
+            [
+
+                'tingkat_pendidikan' => 'required|unique:pendidikans',
+
+            ]
+        );
         pendidikan::where('id', $pendidikan->id)->update([
-            'tingkat_pendidikan' => $request->validate(
-                [
-
-                    'tingkat_pendidikan' => 'required|unique:pendidikans',
-
-                ]
-            ),
+            'tingkat_pendidikan' => $validatedData['tingkat_pendidikan']
         ]);
         return Redirect('/admin/informasilainya/pendidikan')->with('success', 'Jenjang pendidikan berhasil Diubah');
     }

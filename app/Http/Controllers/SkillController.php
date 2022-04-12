@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\skill;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class SkillController extends Controller
 {
@@ -14,7 +15,8 @@ class SkillController extends Controller
      */
     public function index()
     {
-        //
+        $skill = DB::table('skills')->orderBy('nama_skill', 'asc')->get();
+        return view('admin.informasilainya.skill.index', ['skill' => $skill]);
     }
 
     /**
@@ -24,7 +26,7 @@ class SkillController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.informasilainya.skill.create');
     }
 
     /**
@@ -35,7 +37,15 @@ class SkillController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate(
+            [
+
+                'nama_skill' => 'required|unique:skills',
+
+            ]
+        );
+        skill::create($validatedData);
+        return Redirect('/admin/informasilainya/skill')->with('success', 'Skill berhasil ditambahkan');
     }
 
     /**
@@ -57,7 +67,9 @@ class SkillController extends Controller
      */
     public function edit(skill $skill)
     {
-        //
+        return view('admin.informasilainya.skill.edit', [
+            'skill' => $skill
+        ]);
     }
 
     /**
@@ -69,7 +81,12 @@ class SkillController extends Controller
      */
     public function update(Request $request, skill $skill)
     {
-        //
+        $validatedData = $request->validate(['nama_skill' => 'required|unique:skills']);
+
+        skill::where('id', $skill->id)->update([
+            'nama_skill' => $validatedData['nama_skill']
+        ]);
+        return Redirect('/admin/informasilainya/skill')->with('success', 'Skill berhasil Diubah');
     }
 
     /**
@@ -80,6 +97,7 @@ class SkillController extends Controller
      */
     public function destroy(skill $skill)
     {
-        //
+        $skill->delete();
+        return Redirect('/admin/informasilainya/skill')->with('success', 'Berhasil Dihapus');
     }
 }
