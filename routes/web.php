@@ -16,6 +16,7 @@ use App\Http\Controllers\PendaftarPerusahaanCont;
 use App\Http\Controllers\InformasiLainyaCont;
 use App\Http\Controllers\PendidikanController;
 use App\Http\Controllers\DashboardPosisiController;
+use App\Http\Controllers\KotaController;
 use App\Http\Controllers\ProdiController;
 use App\Http\Controllers\SkillController;
 
@@ -91,5 +92,6 @@ Route::post('/admin/informasilainya/pendidikan/store', [PendidikanController::cl
 Route::resource('/admin/informasilainya/pendidikan', PendidikanController::class)->middleware('auth:admin');
 Route::resource('/admin/informasilainya/prodi', ProdiController::class)->middleware('auth:admin');
 Route::resource('/admin/informasilainya/skill', SkillController::class)->middleware('auth:admin');
+Route::resource('/admin/informasilainya/kota', KotaController::class)->middleware('auth:admin');
 Route::get('/admin/posisimagang/show{id}/{perusahaanid}', [AdminPosisiCont::class, 'show'])->middleware('auth:admin');
 // Route::get('/dashboard/back', [PendaftarPerusahaanCont::class, 'back'])->middleware('auth:perusahaan');

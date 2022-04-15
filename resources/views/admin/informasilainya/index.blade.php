@@ -82,6 +82,31 @@
             </a>
         </div>
 
+        <div class="col">
+            <a href="/admin/informasilainya/kota" style="text-decoration:none">
+            <div class="card card-cover h-20 overflow-hidden text-white bg-secondary rounded-5 shadow-lg"  style="min-height: 10rem;" >
+                <div class="d-flex flex-column h-100 p-2 pb-3 text-white text-shadow-1">
+                    {{-- <h5 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Short title, long jacket</h5> --}}
+                    <div class="row g-0">
+                        <div class="col-sm-3">
+                            <div class="mt-4 "> <svg xmlns="http://www.w3.org/2000/svg" style="max-width: 5rem; min-height:3rem; min-width:3rem; max-height: 5rem; " fill="currentColor" class="bi bi-file-earmark-person" viewBox="0 0 16 16">
+                                <path d="M11 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+                                <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2v9.255S12 12 8 12s-5 1.755-5 1.755V2a1 1 0 0 1 1-1h5.5v2z" />
+                            </svg></div>
+                            {{-- <i class="bi bi-building" style="font-size: 4.5rem; "></i> --}}
+                        </div>
+                        <div class="col-sm-9">
+                            <div class="card-body">
+                                <h5 class="card-title">Kota</h5>
+                                <p class="card-text">Daftar Kota</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </a>
+        </div>
+
 
 
     </div>
