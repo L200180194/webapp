@@ -12,26 +12,27 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
+use \Illuminate\Contracts\Validation\Validator;
 
 class UserCont extends Controller
 {
     public function register(Request $request)
     {
         try {
-            $request->validate([
+            $valdat = $request->validate([
                 'name' => 'required|string|max:255',
                 'notlp_user' => 'required|max:255',
                 'alamat_user' => 'required|string|max:255',
                 'email' => 'required|email|unique:users|max:255',
                 'password' => 'required|min:8',
+                'kota_id' => 'required|integer',
+                'pendidikan_id' => 'required|integer',
+                'prodi_id' => 'required|integer',
+                'skill_id' => 'required|integer',
+                'cv_user' => 'required|mimes:pdf|file|max:1524'
             ]);
-            User::create([
-                'name' => $request->name,
-                'notlp_user' => $request->notlp_user,
-                'alamat_user' => $request->alamat_user,
-                'email' => $request->email,
-                'password' => Hash::make($request->password),
-            ]);
+            $valdat['cv_user'] = $request->file('cv_user')->store('cv-user');
+            User::create($valdat);
             $user = User::where('email', $request->email)->first();
 
             $tokenResult = $user->createToken('authToken')->plainTextToken;
@@ -44,11 +45,11 @@ class UserCont extends Controller
                 ],
                 'Berhasil Terdaftar'
             );
-        } catch (Exception $error) {
+        } catch (\Illuminate\Contracts\Validation\Validator $validator) {
             return ResponseFormatter::error(
                 [
                     'message' => 'Something Went Wrong',
-                    'error' => $error
+                    'error' => $validator->getMessageBag()
                 ],
                 'Gagal'
             );
@@ -64,7 +65,8 @@ class UserCont extends Controller
             ]);
             if (!Auth::attempt($credentials)) {
                 return ResponseFormatter::error([
-                    'message' => 'Gagal'
+                    'message' => 'Gagal',
+                    'err' => 'User belum memiliki akun atau email input salah'
                 ], 'Login Gagal', 500);
             }
             $user = User::where('email', $request->email)->with('pendidikan', 'skill', 'prodi', 'kota')->first();
@@ -77,10 +79,10 @@ class UserCont extends Controller
                 'token_type' => 'Bearer',
                 'user' => $user,
             ], 'Berhasil Login');
-        } catch (Exception $error) {
+        } catch (\Illuminate\Contracts\Validation\Validator $validator) {
             return ResponseFormatter::error([
                 'message' => 'Something Went Wrong',
-                'error' => $error
+                'error' => $validator->getMessageBag()
             ], 'Login Gagal', 500);
         }
     }
@@ -91,16 +93,16 @@ class UserCont extends Controller
     public function updateprofile(Request $request)
     {
         try {
-            if (Auth::user()->cv_user == null and Auth::user()->kota_id and Auth::user()->pendidikan_id and Auth::user()->prodi_id and Auth::user()->skill_id) {
+            if (Auth::user()->cv_user == null or Auth::user()->kota_id == null or Auth::user()->pendidikan_id == null or Auth::user()->prodi_id == null or Auth::user()->skill_id == null) {
                 $validatedData = $request->validate([
                     'name' => 'required|max:255|string',
                     'alamat_user' =>  'required|max:255|string',
                     'notlp_user' => 'required',
-                    'kota_id' => 'required',
-                    'pendidikan_id' => 'required',
-                    'prodi_id' => 'required',
-                    'skill_id' => 'required',
-                    'cv_user' => 'required|mimes:pdf|file|max:1524'
+                    'kota_id' => 'required|integer',
+                    'pendidikan_id' => 'required|integer',
+                    'prodi_id' => 'required|integer',
+                    'skill_id' => 'required|integer',
+                    'cv_user' => 'mimes:pdf|file|max:1524'
                 ]);
                 $validatedData['cv_user'] = $request->file('cv_user')->store('cv-user');
             } else {
@@ -108,6 +110,10 @@ class UserCont extends Controller
                     'name' => 'required|max:255|string',
                     'alamat_user' =>  'required|max:255|string',
                     'notlp_user' => 'required',
+                    'kota_id' => 'required|integer',
+                    'pendidikan_id' => 'required|integer',
+                    'prodi_id' => 'required|integer',
+                    'skill_id' => 'required|integer',
                     'cv_user' => 'mimes:pdf|file|max:1524'
                 ]);
             }
@@ -117,12 +123,14 @@ class UserCont extends Controller
             }
             $user = Auth::user();
             $user->update($validatedData);
-            return ResponseFormatter::success($user, 'Profile Updated');
-        } catch (Exception $error) {
+
+
+            return ResponseFormatter::success($usr, 'Profile Updated');
+        } catch (Validator $error) {
             return ResponseFormatter::error(
                 [
                     'message' => 'Something Went Wrong',
-                    'error' => $error
+                    'error' => $error->getMessageBag()
                 ],
                 'Gagal'
             );

@@ -41,7 +41,7 @@ class PendaftaranUserCont extends Controller
 
         $id =  Auth::user()->id;
         $pendaftaran = pendaftaran::join('perusahaans', 'pendaftarans.perusahaan_id', '=', 'perusahaans.id')
-            ->join('users', 'pendaftarans.user_id', '=', 'users.id')->select('perusahaans.*', 'users.*', 'pendaftarans.*')->join('posisi_magangs', 'pendaftarans.posisi_magang_id', '=', 'posisi_magangs.id')->where('users.id', '=', $id)->paginate(15);
+            ->join('users', 'pendaftarans.user_id', '=', 'users.id')->select('perusahaans.*', 'users.*', 'pendaftarans.*')->join('posisi_magangs', 'pendaftarans.posisi_magang_id', '=', 'posisi_magangs.id')->where('users.id', '=', $id)->orderBy('pendaftarans.created_at', 'desc')->get();
         // return Auth::user();
         return ResponseFormatter::success(
             [

@@ -51,7 +51,7 @@ class PosisiMagangCont extends Controller
             $posisi->where('nama_posisi', 'like', '%' . $nama_posisi . '%');
         }
         return ResponseFormatter::success(
-            $posisi->paginate(20),
+            $posisi->orderBy('created_at', 'desc')->get(),
             'Data Posisi Magang Berhasil Diambil'
         );
     }
